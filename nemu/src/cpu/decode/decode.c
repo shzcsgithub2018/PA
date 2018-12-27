@@ -27,7 +27,7 @@ static inline make_DopHelper(I) {
 
 /* I386 manual does not contain this abbreviation, but it is different from
  * the one above from the view of implementation. So we use another helper
- * function to decode it.
+ * function toit.
  */
 /* sign immediate */
 static inline make_DopHelper(SI) {
@@ -35,7 +35,7 @@ static inline make_DopHelper(SI) {
 
   op->type = OP_TYPE_IMM;
 
-  /* TODO: Use instr_fetch() to read `op->width' bytes of memory
+  /* TODO: Use  to read `op->width' bytes of memory
    * pointed by `eip'. Interpret the result as a signed immediate,
    * and assign it to op->simm.
    *
