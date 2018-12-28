@@ -65,20 +65,21 @@ static int cmd_info(char *args){
 }
 
 static int cmd_x(char *args){
-    char *arg1=strtok(NULL," ");
-    char *arg2=strtok(NULL," ");
-    Log("arg1 = %s", arg1);
-    Log("arg2 = %s", arg2);
-    if(!arg1 || !arg2)
-        return 0;
+    // char *arg1=strtok(NULL," ");
+    // char *arg2=strtok(NULL," ");
+    // Log("arg1 = %s", arg1);
+    // Log("arg2 = %s", arg2);
+    // if(!arg1 || !arg2)
+    //     return 0;
 
-    //int num=atoi(arg1);
+    // int num=atoi(arg1);
     //uint32_t *addr=strtol(arg2,NULL,0);
-    uint64_t addr=0x100000;
-    printf("%x\n",*(uint8_t* )addr);
-    //uint32_t *addr=init_addr;
-    // for(int i=0;i<num;i++,addr++)
-    //     printf("0x%-15x\t0x%-15x\n",addr,*addr);
+    vaddr_t addr;
+    int num;
+    if(sscanf(args,"%d%x",&num,&addr)==EOF)
+        return 0;
+    for(int i=0;i<num;i++,addr+=4)
+        printf("0x%-15x\t0x%-15x\n",addr,vaddr_read(addr,4));
 
     return 0;
 }
