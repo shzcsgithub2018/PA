@@ -227,7 +227,7 @@ uint32_t expr(char *e, bool *success) {
     }
 	Log("nr_token=%d\n",nr_token);
 	for(int i=0;i<nr_token;i++){
-		Log("%d\t",tokens[i].type);
+		Log("%c\t",tokens[i].type);
 		Log("%s\n",tokens[i].str);
 	}
     /* TODO: Insert codes to evaluate the expression. */
