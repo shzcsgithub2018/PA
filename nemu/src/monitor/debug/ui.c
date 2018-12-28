@@ -44,6 +44,22 @@ static int cmd_si(char *args){
     cpu_exec(n);
     return 0;
 }
+
+static int cmd_info(char *args){
+    char *arg=strtok(NULL," ");
+    
+    if(strcmp(arg,"r")==0){
+        printf("eax\t%X\t%d   \nebx\t%X\t%d \necx\t%X\t%d \nedx\t%X\t%d\n",
+                        (uint32_t)cpu.eax,cpu.eax,(uint32_t)cpu.ebx,cpu.ebx,(uint32_t)cpu.ecx,cpu.ecx,(uint32_t)cpu.edx,cpu.edx);
+        printf("edi\t%X\t%d   \nesi\t%X\t%d \nesp\t%X\t%d \nebp\t%X\t%d\n",
+                        (uint32_t)cpu.edi,cpu.edi,(uint32_t)cpu.esi,cpu.esi,(uint32_t)cpu.esp,cpu.esp,(uint32_t)cpu.ebp,cpu.ebp);
+        printf("eip\t%X\t%d   \n",(uint32_t)cpu.eip,cpu.eip);
+    }else if(strcmp(arg,"w")==0){
+
+    }
+
+    return 0;
+}
 static struct {
     char *name;
     char *description;
@@ -53,6 +69,7 @@ static struct {
     { "c", "Continue the execution of the program", cmd_c },
     { "q", "Exit NEMU", cmd_q },
     { "si","Step Num instructions or step one instructions",cmd_si},
+    { "info","print Register status or Monitoring Point information",cmd_info},
     /* TODO: Add more commands */
 
 };
