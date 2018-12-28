@@ -67,7 +67,7 @@ static int cmd_info(char *args){
 static int cmd_x(char *args){
     vaddr_t addr;
     int num;
-    if(sscanf(args,"%d%x",&num,&addr)==EOF)
+    if(sscanf(args,"%d%x",&num,&addr)!=2)
         return 0;
     printf("%-15s\t        %-15s\n","addr","val");
     for(int i=0;i<num;i++,addr+=4)
