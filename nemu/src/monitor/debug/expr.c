@@ -147,7 +147,7 @@ bool check_parentheses(Token *p,Token *q,bool *success){
 		if(count==0)
 			return true;
 		else
-			success=false;
+			*success=false;
 	}
 	return false;
 }
@@ -165,28 +165,30 @@ Token* pos_mop(Token *p,Token *q,bool *success){
 			continue;
 		}
 		if(is_inP!=0)continue;
+
 		if(iter_p->type!='+' && iter_p->type!='-' 
 			&& iter_p->type!='*' && iter_p->type!='/')
 			continue;
 
-		if(sign==1 && 
-			(iter_p->type=='+' || iter_p->type=='-'))
-				pos_mod=iter_p;
+		if (iter_p->type=='+' || iter_p->type=='-'){
+			pos_mod=iter_p;
+			sign=1;
+		}
 		else if(sign==0 && 
 			(iter_p->type=='*' || iter_p->type=='/'))
 			pos_mod=iter_p;
 	}
 	if(pos_mod==NULL)
-		success=false;
+		*success=false;
 	return pos_mod;
 }
 
 uint32_t eval(Token *p,Token *q,bool *success){
-	if(success==false)
+	if(*success==false)
 		return 0;
   	if (p > q) {
     	/* Bad expression */
-		success=false;
+		*success=false;
  	}
   	else if (p == q) {
     /* Single token.
@@ -196,7 +198,7 @@ uint32_t eval(Token *p,Token *q,bool *success){
 		if(p->type==TK_NUM)
 			return (uint32_t)atoi(p->str);
 		else
-			success=false;
+			*success=false;
     }
   	else if (check_parentheses(p, q,success) == true) {
     /* The expression is surrounded by a matched pair of parentheses.
