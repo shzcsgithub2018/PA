@@ -224,13 +224,9 @@ uint32_t expr(char *e, bool *success) {
         *success = false;
         return 0;
     }
-
+	Log("nr_token=%d\n",nr_token);
     /* TODO: Insert codes to evaluate the expression. */
 	*success=true;
-	// uint32_t result=eval(tokens,tokens+nr_token-1,success);
-	// return result;
-
-    // TODO();
-
-    return 0;
+	uint32_t result=eval(tokens,tokens+nr_token-1,success);
+	return result;
 }
