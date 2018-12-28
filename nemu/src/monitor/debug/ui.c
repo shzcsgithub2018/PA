@@ -65,15 +65,6 @@ static int cmd_info(char *args){
 }
 
 static int cmd_x(char *args){
-    // char *arg1=strtok(NULL," ");
-    // char *arg2=strtok(NULL," ");
-    // Log("arg1 = %s", arg1);
-    // Log("arg2 = %s", arg2);
-    // if(!arg1 || !arg2)
-    //     return 0;
-
-    // int num=atoi(arg1);
-    //uint32_t *addr=strtol(arg2,NULL,0);
     vaddr_t addr;
     int num;
     if(sscanf(args,"%d%x",&num,&addr)==EOF)
