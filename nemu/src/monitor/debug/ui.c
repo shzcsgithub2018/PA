@@ -52,11 +52,11 @@ static int cmd_info(char *args){
         return 0;
 
     if(strcmp(arg,"r")==0){
-        printf("eax\t%d\t%x  \nebx\t%d\t%x  \necx\t%d\t%x  \nedx\t%d\t%x\n",
+        printf("eax\t%d\t0x%x  \nebx\t%d\t0x%x  \necx\t%d\t0x%x  \nedx\t%d\t0x%x\n",
                     cpu.eax,cpu.eax,cpu.ebx,cpu.ebx,cpu.ecx,cpu.ecx,cpu.edx,cpu.edx);
-        printf("edi\t%d\t%x  \nesi\t%d\t%x  \nesp\t%d\t%x  \nebp\t%d\t%x\n",
+        printf("edi\t%d\t0x%x  \nesi\t%d\t0x%x  \nesp\t%d\t0x%x  \nebp\t%d\t0x%x\n",
                     cpu.edi,cpu.edi,cpu.esi,cpu.esi,cpu.esp,cpu.esp,cpu.ebp,cpu.ebp);
-        printf("eip\t%d\t%x\n",cpu.eip,cpu.eip);
+        printf("eip\t%d\t0x%x\n",cpu.eip,cpu.eip);
     }else if(strcmp(arg,"w")==0){
 
     }
