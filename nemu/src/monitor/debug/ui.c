@@ -48,6 +48,9 @@ static int cmd_si(char *args){
 static int cmd_info(char *args){
     char *arg=strtok(NULL," ");
     
+    if(arg==NULL)
+        return 0;
+        
     if(strcmp(arg,"r")==0){
         printf("eax=%d  \nebx=%d  \necx=%d  \nedx=%d\n",cpu.eax,cpu.ebx,cpu.ecx,cpu.edx);
         printf("edi=%d  \nesi=%d  \nesp=%d  \nebp=%d\n",cpu.edi,cpu.esi,cpu.esp,cpu.ebp);
