@@ -67,7 +67,8 @@ static int cmd_info(char *args){
 static int cmd_x(char *args){
     char *arg1=strtok(NULL," ");
     char *arg2=strtok(NULL," ");
-
+    Log("arg1 = %s", arg1);
+    Log("arg2 = %s", arg2);
     if(!arg1 || !arg2)
         return 0;
 
