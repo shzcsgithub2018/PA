@@ -28,28 +28,52 @@ char* rl_gets() {
 }
 
 static int cmd_c(char *args) {
+    if(args){
+        Log("Please input current arguments");
+        return 0;
+    }
     cpu_exec(-1);
     return 0;
 }
 
 static int cmd_q(char *args) {
-    return -1;
+    if(args==NULL){
+        Log("Please input current arguments");
+        return 0;
+    }
+
+    bool success=true;
+    uint32_t result=expr(args,&success);
+    if(success==true)
+        printf("%d\n",result);
+    else
+        Log("Please input current expression");
+
+    return 0;
 }
 
 static int cmd_help(char *args);
 
 static int cmd_si(char *args){
     char *arg=strtok(NULL," ");
+    if(arg==NULL){
+        Log("Please input current arguments");
+        return 0;
+    }
+    
     int n=atoi(arg);
+
     cpu_exec(n);
+
     return 0;
 }
 
 static int cmd_info(char *args){
     char *arg=strtok(NULL," ");
-    
-    if(arg==NULL)
+    if(arg==NULL){
+        Log("Please input current arguments");
         return 0;
+    }
 
     if(strcmp(arg,"r")==0){
         printf("eax\t%-15d0x%-15x  \nebx\t%-15d0x%-15x  \necx\t%-15d0x%-15x  \nedx\t%-15d0x%-15x\n",
