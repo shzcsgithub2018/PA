@@ -75,7 +75,7 @@ static int cmd_x(char *args){
     //int num=atoi(arg1);
     //uint32_t *addr=strtol(arg2,NULL,0);
     uint64_t addr=0x100000;
-    printf("%x\n",*(uint32_t* )addr);
+    printf("%x\n",*(uint8_t* )addr);
     //uint32_t *addr=init_addr;
     // for(int i=0;i<num;i++,addr++)
     //     printf("0x%-15x\t0x%-15x\n",addr,*addr);
