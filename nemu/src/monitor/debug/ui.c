@@ -69,7 +69,9 @@ static int cmd_x(char *args){
     int num;
     // if(sscanf(args,"%d%x",&num,&addr)!=2)
     //     return 0;
-    if(sscanf(args,"%d%x",&num,&addr)!=2)
+    int a=sscanf(args,"%d%x",&num,&addr);
+    Log("a=%d\n",a);
+    if(a!=2)
         return 0;
 
     printf("%-15s\t        %-15s\n","addr","val");
