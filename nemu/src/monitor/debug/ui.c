@@ -49,11 +49,9 @@ static int cmd_info(char *args){
     char *arg=strtok(NULL," ");
     
     if(strcmp(arg,"r")==0){
-        printf("eax\t%X\t%d   \nebx\t%X\t%d \necx\t%X\t%d \nedx\t%X\t%d\n",
-                        (uint32_t)cpu.eax,cpu.eax,(uint32_t)cpu.ebx,cpu.ebx,(uint32_t)cpu.ecx,cpu.ecx,(uint32_t)cpu.edx,cpu.edx);
-        printf("edi\t%X\t%d   \nesi\t%X\t%d \nesp\t%X\t%d \nebp\t%X\t%d\n",
-                        (uint32_t)cpu.edi,cpu.edi,(uint32_t)cpu.esi,cpu.esi,(uint32_t)cpu.esp,cpu.esp,(uint32_t)cpu.ebp,cpu.ebp);
-        printf("eip\t%X\t%d   \n",(uint32_t)cpu.eip,cpu.eip);
+        printf("eax=%d  \nebx=%d  \necx=%d  \nedx=%d\n",cpu.eax,cpu.ebx,cpu.ecx,cpu.edx);
+        printf("edi=%d  \nesi=%d  \nesp=%d  \nebp=%d\n",cpu.edi,cpu.esi,cpu.esp,cpu.ebp);
+        printf("eip=%d\n",cpu.eip);
     }else if(strcmp(arg,"w")==0){
 
     }
