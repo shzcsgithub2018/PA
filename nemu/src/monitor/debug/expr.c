@@ -131,24 +131,22 @@ static bool make_token(char *e) {
 }
 
 bool check_parentheses(Token *p,Token *q,bool *success){
-	if(p->type!='(' || q->type!=')')
-		return false;
-	else{
-		int count=1;
-		for(Token *iter_p=p+1;iter_p<q;iter_p++){
-			if(iter_p->type=='(')
-				count++;
-			else if(iter_p->type==')')
-				count--;
-			if(count==0)
-				return false;
-		}
-		count--;
+	int count=0;
+	int sign=0;
+	for(Token *iter_p=p;iter_p<q;iter_p++){
+		if(iter_p->type=='(')
+			count++;
+		else if(iter_p->type==')')
+			count--;
 		if(count==0)
-			return true;
-		else
-			*success=false;
+			sign=1;//not exit a pair of parentheses at head and front
 	}
+	count--;
+
+	if(sign==0 && count==0 && (p->type=='(' && q->type==')'))
+		return true;
+	else if(count!=0)
+		*success=false;
 	return false;
 }
 
