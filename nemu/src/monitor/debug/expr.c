@@ -105,7 +105,8 @@ static bool make_token(char *e) {
 							panic("Buffer overflow!");
 
 						tokens[nr_token].type=TK_NUM;
-						strcpy(tokens[nr_token++].str,substr_start);
+						strcpy(tokens[nr_token].str,substr_start);
+						tokens[nr_token++].str[substr_len]='\0';
 						break;
 					}
 					
