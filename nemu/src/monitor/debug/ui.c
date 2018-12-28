@@ -39,6 +39,9 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 
 static int cmd_si(char *args){
+    char *arg=strtok(NULL," ");
+    int n=atoi(arg);
+    cpu_exec(n);
     return 0;
 }
 static struct {
