@@ -227,10 +227,10 @@ uint32_t expr(char *e, bool *success) {
 
     /* TODO: Insert codes to evaluate the expression. */
 	*success=true;
-	uint32_t result=eval(tokens,tokens+nr_token-1,success);
-	return result;
+	// uint32_t result=eval(tokens,tokens+nr_token-1,success);
+	// return result;
 
-    TODO();
+    // TODO();
 
     return 0;
 }
