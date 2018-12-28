@@ -65,12 +65,12 @@ static int cmd_info(char *args){
 }
 
 static int cmd_x(char *args){
+    if(args==NULL)
+        return 0;
     vaddr_t addr;
     int num;
-    // if(sscanf(args,"%d%x",&num,&addr)!=2)
-    //     return 0;
     int a=sscanf(args,"%d%x",&num,&addr);
-    Log("a=%d\n",a);
+    Log("a=%d\n",a);    
     if(a!=2)
         return 0;
 
