@@ -37,19 +37,7 @@ static int cmd_c(char *args) {
 }
 
 static int cmd_q(char *args) {
-    if(args==NULL){
-        Log("Please input current arguments");
-        return 0;
-    }
-
-    bool success=true;
-    uint32_t result=expr(args,&success);
-    if(success==true)
-        printf("%d\n",result);
-    else
-        Log("Please input current expression");
-
-    return 0;
+   return -1;
 }
 
 static int cmd_help(char *args);
@@ -105,6 +93,18 @@ static int cmd_x(char *args){
 }
 
 static int cmd_p(char *args){
+     if(args==NULL){
+        Log("Please input current arguments");
+        return 0;
+    }
+
+    bool success=true;
+    uint32_t result=expr(args,&success);
+    if(success==true)
+        printf("%d\n",result);
+    else
+        Log("Please input current expression");
+
     return 0;
 }
 
