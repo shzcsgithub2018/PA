@@ -63,6 +63,36 @@ static int cmd_info(char *args){
 
     return 0;
 }
+
+static int cmd_x(char *args){
+    char *arg1=strtok(NULL," ");
+    char *arg2=strtok(NULL," ");
+
+    if(!arg1 || !arg2)
+        return 0;
+
+    //int num=atoi(arg1);
+    //uint32_t *addr=strtol(arg2,NULL,0);
+    uint64_t addr=0x100000;
+    printf("%x\n",*(uint32_t* )addr);
+    //uint32_t *addr=init_addr;
+    // for(int i=0;i<num;i++,addr++)
+    //     printf("0x%-15x\t0x%-15x\n",addr,*addr);
+
+    return 0;
+}
+
+static int cmd_p(char *args){
+    return 0;
+}
+
+static int cmd_w(char *args){
+    return 0;
+}
+
+static int cmd_d(char *args){
+    return 0;
+}
 static struct {
     char *name;
     char *description;
@@ -71,8 +101,12 @@ static struct {
     { "help", "Display informations about all supported commands", cmd_help },
     { "c", "Continue the execution of the program", cmd_c },
     { "q", "Exit NEMU", cmd_q },
-    { "si","Step Num instructions or step one instructions",cmd_si},
-    { "info","print Register status or Monitoring Point information",cmd_info},
+    { "si", "Step Num instructions or step one instructions",cmd_si},
+    { "info", "print Register status or Monitoring Point information",cmd_info},
+    { "x", "Scan memory",cmd_x},
+    { "p", "Expression evaluation",cmd_p},
+    { "w", "Setting up monitoring points",cmd_w},
+    { "d", "Delete monitoring points",cmd_d},
     /* TODO: Add more commands */
 
 };
