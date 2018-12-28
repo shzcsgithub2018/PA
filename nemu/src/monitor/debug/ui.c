@@ -78,7 +78,7 @@ static int cmd_x(char *args){
     int num;
     if(sscanf(args,"%d%x",&num,&addr)==EOF)
         return 0;
-    printf("%-15s\t%-15s\n","addr","val");
+    printf("  %-15s\t  %-15s\n","addr","val");
     for(int i=0;i<num;i++,addr+=4)
         printf("0x%-15x\t0x%-15x\n",addr,vaddr_read(addr,4));
 
