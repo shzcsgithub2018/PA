@@ -26,6 +26,7 @@ int main(int argc, char *argv[]) {
     printf("true!\n");
     if(fgets(buf,65576,fp)==NULL)
       return 0;
+    printf("true!\n");
     sscanf(buf,"%d %s",&result,buf);
     uint32_t val=expr(buf,&success);
 
