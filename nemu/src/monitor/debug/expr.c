@@ -141,6 +141,8 @@ bool check_parentheses(Token *p,Token *q,bool *success){
 			count--;
 		if(count==0)
 			sign=1;//not exit a pair of parentheses at head and front
+		else if(count<0)
+			*success=false;
 	}
 	if(q->type==')')
 		count--;
