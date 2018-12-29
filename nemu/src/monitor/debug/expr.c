@@ -193,6 +193,7 @@ uint32_t eval(Token *p,Token *q,bool *success){
      * For now this token should be a number.
      * Return the value of the number.
      */
+		Log("I'm here!");
 		switch(p->type){
 			case TK_NUM:return (uint32_t)atoi(p->str);
 			case TK_NUM_HEX:{
