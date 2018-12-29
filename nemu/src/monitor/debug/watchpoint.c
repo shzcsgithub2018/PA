@@ -19,5 +19,10 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
+WP* new_wp(){
+  return free_;
+}
 
+void free_wp(WP* wp){
 
+}
