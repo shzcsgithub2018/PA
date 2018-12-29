@@ -178,8 +178,6 @@ Token* pos_mop(Token *p,Token *q,bool *success){
 			(iter_p->type=='*' || iter_p->type=='/'))
 			pos_mod=iter_p;
 	}
-	if(pos_mod==NULL)
-		*success=false;
 	return pos_mod;
 }
 
@@ -195,10 +193,23 @@ uint32_t eval(Token *p,Token *q,bool *success){
      * For now this token should be a number.
      * Return the value of the number.
      */
-		if(p->type==TK_NUM)
-			return (uint32_t)atoi(p->str);
-		else
-			*success=false;
+		switch(p->type){
+			case TK_NUM:return (uint32_t)atoi(p->str);
+			case TK_NUM_HEX:{
+				uint32_t num;
+				sscanf(p->str+2,"%x",&num);
+				return num;
+			}
+			case TK_RES:{
+				for(int i=0;i<8;i++)
+					if(strcmp(p->str+1,regsl[i])==0)
+						return cpu.gpr[i]._32;
+				if(strcmp(p->str+1,"eip")==0)
+					return cpu.eip;
+			}
+			default:*success=false;return 0;
+		}
+			
     }
   	else if (check_parentheses(p, q,success) == true) {
     /* The expression is surrounded by a matched pair of parentheses.
@@ -209,8 +220,13 @@ uint32_t eval(Token *p,Token *q,bool *success){
   	else {
 		Token *op = pos_mop(p,q,success);
 		//Log("p=%s q=%s\n",p->str,q->str);
-		uint32_t val1 = eval(p, op - 1,success);
-		uint32_t val2 = eval(op + 1, q,success);
+		uint32_t val1=1,val2;
+		if(op==NULL && p->type==TK_POINT)
+			op=p;
+		else
+			val1 = eval(p, op - 1,success);
+
+		val2 = eval(op + 1, q,success);
 
 		switch (op->type) {
 			case '+': return val1 + val2;
@@ -222,6 +238,9 @@ uint32_t eval(Token *p,Token *q,bool *success){
 					return 1;
 				}
 				return val1 / val2;
+			}
+			case TK_POINT:{
+				return vaddr_read(val2,4);
 			}
 			default: return 0;
     	}
