@@ -193,7 +193,6 @@ uint32_t eval(Token *p,Token *q,bool *success){
      * For now this token should be a number.
      * Return the value of the number.
      */
-		Log("I'm here!");
 		switch(p->type){
 			case TK_NUM:return (uint32_t)atoi(p->str);
 			case TK_NUM_HEX:{
@@ -202,7 +201,6 @@ uint32_t eval(Token *p,Token *q,bool *success){
 				return num;
 			}
 			case TK_RES:{
-				Log("I'm here!");
 				for(int i=0;i<8;i++)
 					if(strcmp(p->str+1,regsl[i])==0)
 						return cpu.gpr[i]._32;
