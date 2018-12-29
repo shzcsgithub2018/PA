@@ -24,10 +24,11 @@ int main(int argc, char *argv[]) {
   printf("true!\n");
   while(!feof(fp)){
     printf("true!\n");
-    if(fgets(buf,10,fp)==NULL)
+    if(fgets(buf,65576,fp)==NULL)
       return 0;
     printf("true!\n");
     sscanf(buf,"%d %s",&result,buf);
+    printf("true!\n");
     uint32_t val=expr(buf,&success);
 
     if(val==result)
