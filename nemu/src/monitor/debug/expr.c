@@ -169,7 +169,7 @@ Token* pos_mop(Token *p,Token *q,bool *success){
 		if(iter_p->type!='+' && iter_p->type!='-' 
 			&& iter_p->type!='*' && iter_p->type!='/')
 			continue;
-		Log("I'm here");
+		printf("I'm here  %ld",iter_p-p);
 		if (iter_p->type=='+' || iter_p->type=='-'){
 			pos_mod=iter_p;
 			sign=1;
