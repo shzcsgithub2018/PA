@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) {
       return 0;
     printf("true!\n");
     sscanf(buf,"%d %s",&result,buf);
+    printf("%d\t %s\n",result,buf);
     printf("true!\n");
     uint32_t val=expr(buf,&success);
 
