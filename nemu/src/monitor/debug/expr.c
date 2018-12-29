@@ -31,7 +31,7 @@ static struct rule {
 	{"\\(",'('},							// Left parenthesis
 	{"\\)",')'},							// Right parenthesis
 	{"\\$(e(([a-d]x)|([bsi]p)|([ds]i)))", TK_RES},//regester
-	{"0x[0-9a-fA-F]{1,8}", TK_NUM_HEX},		// Hexadecimal integer
+	{"0[Xx][0-9a-fA-F]{1,8}", TK_NUM_HEX},		// Hexadecimal integer
 	{"([1-9][0-9]{1,31})|[0-9]",TK_NUM},	// Decimal integer
     {"==", TK_EQ},                			// equal
 	{"!=", TK_NEQ},							// not equal
