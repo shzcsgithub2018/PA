@@ -271,6 +271,10 @@ uint32_t expr(char *e, bool *success) {
 		else
     		tokens[i].type = TK_POINT;
 	}
-
+	Log("nr_token=%d\n",nr_token);
+	for(int i=0;i<nr_token;i++){
+		Log("%c\t",tokens[i].type);
+		Log("%s\n",tokens[i].str);
+	}
 	return eval(tokens,tokens+nr_token-1,success);
 }
