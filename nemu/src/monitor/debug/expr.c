@@ -219,7 +219,7 @@ uint32_t eval(Token *p,Token *q,bool *success){
   	}
   	else {
 		Token *op = pos_mop(p,q,success);
-		//Log("p=%s q=%s\n",p->str,q->str);
+		Log("%c",op->type);
 		uint32_t val1=1,val2;
 		if(op==NULL && p->type==TK_POINT)
 			op=p;
