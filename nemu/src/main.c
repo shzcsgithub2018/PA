@@ -16,13 +16,16 @@ void ui_mainloop(int);
 int main(int argc, char *argv[]) {
 
   FILE *fp=fopen("./tools/gen-expr/input","r");
+  if(fp==NULL)
+    return 0;
   int result;
   bool success=true;
   char buf[65576];
   printf("true!\n");
-  while(fp){
-    if(fscanf(fp,"%d %s\n",&result,buf)==EOF)
+  while(!feof(fp)){
+    if(fgets(buf,65576,fp)==NULL)
       return 0;
+    sscanf(buf,"%d %s",&result,buf);
     uint32_t val=expr(buf,&success);
 
     if(val==result)
