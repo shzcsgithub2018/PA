@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
   char buf[65576];
   printf("true!\n");
   while(!feof(fp)){
+    printf("true!\n");
     if(fgets(buf,65576,fp)==NULL)
       return 0;
     sscanf(buf,"%d %s",&result,buf);
