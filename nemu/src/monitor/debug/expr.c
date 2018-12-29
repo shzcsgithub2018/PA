@@ -169,20 +169,29 @@ Token* pos_mop(Token *p,Token *q,bool *success){
 		if(is_inP!=0)continue;
 		
 		if(iter_p->type!='+' && iter_p->type!='-' 
-			&& iter_p->type!='*' && iter_p->type!='/')
+							 && iter_p->type!='*' 
+							 && iter_p->type!='/'
+							 && iter_p->type!=TK_EQ
+							 && iter_p->type!=TK_NEQ
+							 && iter_p->type!=TK_AND
+		)
 			continue;
-		// printf("I'm here  %ld",iter_p-p);
-		if (iter_p->type=='+' || iter_p->type=='-'){
+		else if(sign<=3 && iter_p->type==TK_AND){
+			pos_mod=iter_p;
+			sign=3;
+		}
+		else if(sign<=2 && (iter_p->type==TK_EQ || iter_p->type==TK_NEQ)){
+			pos_mod=iter_p;
+			sign=2;
+		}
+		else if (sign<=1 && (iter_p->type=='+' || iter_p->type=='-')){
 			pos_mod=iter_p;
 			sign=1;
 		}
-		else if(sign==0 && 
-			(iter_p->type=='*' || iter_p->type=='/'))
-		{
+		else if(sign<=0 && (iter_p->type=='*' || iter_p->type=='/'))
 			pos_mod=iter_p;
-			
-		}
 	}
+
 	return pos_mod;
 }
 
@@ -223,16 +232,14 @@ uint32_t eval(Token *p,Token *q,bool *success){
     	return eval(p + 1, q - 1,success);
   	}
   	else {
-		Token *op = pos_mop(p,q,success);
-		
 		uint32_t val1=1,val2;
-		if(op==NULL && p->type==TK_POINT){
+
+		Token *op = pos_mop(p,q,success);
+
+		if(op==NULL && p->type==TK_POINT)
 			op=p;
-			Log("I'm here");
-		}
 		else
 			val1 = eval(p, op - 1,success);
-
 		val2 = eval(op + 1, q,success);
 
 		switch (op->type) {
@@ -244,11 +251,13 @@ uint32_t eval(Token *p,Token *q,bool *success){
 					Log("Division by zero,the result is wrong!\n");
 					return 1;
 				}
-				return val1 / val2;
+				else
+					return val1 / val2;
 			}
-			case TK_POINT:{
-				return vaddr_read(val2,4);
-			}
+			case TK_POINT:return vaddr_read(val2,4);
+			case TK_EQ: return val1==val2?1:0;
+			case TK_NEQ:return val1!=val2?1:0;
+			case TK_AND:return (val1>0&&val2>0)?1:0;
 			default: return 0;
     	}
 	}
@@ -273,12 +282,10 @@ uint32_t expr(char *e, bool *success) {
 										   	|| tokens[i-1].type == TK_RES
 											) 
 									)
-			)
+		)
 			continue;
-		else{
+		else
 			tokens[i].type = TK_POINT;
-			Log("%d",i);
-		}
 	}
 	return eval(tokens,tokens+nr_token-1,success);
 }
