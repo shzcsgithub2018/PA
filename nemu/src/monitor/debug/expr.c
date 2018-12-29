@@ -207,7 +207,7 @@ uint32_t eval(Token *p,Token *q,bool *success){
   	}
   	else {
 		Token *op = pos_mop(p,q,success);
-		Log("p=%s q=%s\n",p->str,q->str);
+		//Log("p=%s q=%s\n",p->str,q->str);
 		uint32_t val1 = eval(p, op - 1,success);
 		uint32_t val2 = eval(op + 1, q,success);
 
