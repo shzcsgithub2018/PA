@@ -103,7 +103,7 @@ static int cmd_p(char *args){
     if(success==true)
         printf("%d\n",result);
     else
-        Log("Please input current expression");
+        Log("Please input current 1 expression");
 
     return 0;
 }
