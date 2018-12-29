@@ -1,20 +1,22 @@
-#include "nemu.h"
-#include "monitor/monitor.h"
-#include <unistd.h>
-#include "monitor/monitor.h"
-#include "monitor/expr.h"
-#include "monitor/watchpoint.h"
-#include "nemu.h"
+#define TEST
+#ifdef TEST
+  #include "nemu.h"
+  #include "monitor/monitor.h"
+  #include <unistd.h>
+  #include "monitor/monitor.h"
+  #include "monitor/expr.h"
+  #include "monitor/watchpoint.h"
+  #include "nemu.h"
 
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-
+  #include <stdlib.h>
+  #include <readline/readline.h>
+  #include <readline/history.h>
+#endif
 int init_monitor(int, char *[]);
 void ui_mainloop(int);
 
 int main(int argc, char *argv[]) {
-
+#ifdef TEST
   FILE *fp=fopen("./tools/gen-expr/input","r");
   if(fp==NULL)
     return 0;
@@ -37,11 +39,12 @@ int main(int argc, char *argv[]) {
       printf("False!\n");
   }
   fclose(fp);
+#else
   /* Initialize the monitor. */
-  // int is_batch_mode = init_monitor(argc, argv);
+  int is_batch_mode = init_monitor(argc, argv);
 
   // /* Receive commands from user. */
-  // ui_mainloop(is_batch_mode);
-
+  ui_mainloop(is_batch_mode);
+#endif
   return 0;
 }
