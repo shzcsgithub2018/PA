@@ -169,7 +169,7 @@ Token* pos_mop(Token *p,Token *q,bool *success){
 		if(iter_p->type!='+' && iter_p->type!='-' 
 			&& iter_p->type!='*' && iter_p->type!='/')
 			continue;
-		printf("I'm here  %ld",iter_p-p);
+		// printf("I'm here  %ld",iter_p-p);
 		if (iter_p->type=='+' || iter_p->type=='-'){
 			pos_mod=iter_p;
 			sign=1;
@@ -222,10 +222,12 @@ uint32_t eval(Token *p,Token *q,bool *success){
   	}
   	else {
 		Token *op = pos_mop(p,q,success);
-		Log("%c",op->type);
+		
 		uint32_t val1=1,val2;
-		if(op==NULL && p->type==TK_POINT)
+		if(op==NULL && p->type==TK_POINT){
 			op=p;
+			Log("I'm here");
+		}
 		else
 			val1 = eval(p, op - 1,success);
 
