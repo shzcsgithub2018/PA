@@ -81,7 +81,7 @@ static bool make_token(char *e) {
                 Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
                         i, rules[i].regex, position, substr_len, substr_len, substr_start);
                 Log("nr_token=%d",nr_token);
-				
+
                 position += substr_len;
 
                 /* TODO: Now a new token is recognized with rules[i]. Add codes
@@ -105,9 +105,9 @@ static bool make_token(char *e) {
 						// if(len>=32)
 						// 	panic("Buffer overflow!");
 
-						tokens[nr_token].type=TK_NUM;
-						strcpy(tokens[nr_token].str,substr_start);
-						tokens[nr_token++].str[substr_len]='\0';
+						// tokens[nr_token].type=TK_NUM;
+						// strcpy(tokens[nr_token].str,substr_start);
+						// tokens[nr_token++].str[substr_len]='\0';
 						break;
 					}
 					
