@@ -44,12 +44,7 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args){
     char *arg=strtok(NULL," ");
-    if(arg==NULL){
-        Log("Please input current arguments");
-        return 0;
-    }
-    
-    int n=atoi(arg);
+    int n=arg==NULL?1:atoi(arg);
 
     cpu_exec(n);
 
