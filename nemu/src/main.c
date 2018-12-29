@@ -19,17 +19,16 @@ int main(int argc, char *argv[]) {
   if(fp==NULL)
     return 0;
   int result;
-  bool success=true;
   char buf[65576];
-  printf("true!\n");
+
   while(!feof(fp)){
-    printf("true!\n");
     if(fgets(buf,65576,fp)==NULL)
       return 0;
-    printf("true!\n");
+
     sscanf(buf,"%d %s",&result,buf);
     printf("%d\t %s\n",result,buf);
-    printf("true!\n");
+
+    bool success=true;
     uint32_t val=expr(buf,&success);
 
     if(val==result)
