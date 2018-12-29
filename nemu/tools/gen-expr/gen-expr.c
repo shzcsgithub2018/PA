@@ -7,7 +7,19 @@
 
 // this should be enough
 static char buf[65536];
+
+uint32_t choose(uint32_t n){
+  strand(time(0));
+  n=rand()%3;
+  return n;
+}
+
 static inline void gen_rand_expr() {
+   switch (choose(3)) {
+    case 0: gen_num(); break;
+    case 1: gen('('); gen_rand_expr(); gen(')'); break;
+    default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); break;
+  }
   buf[0] = '\0';
 }
 
@@ -24,9 +36,11 @@ int main(int argc, char *argv[]) {
   int seed = time(0);
   srand(seed);
   int loop = 1;
+
   if (argc > 1) {
     sscanf(argv[1], "%d", &loop);
   }
+
   int i;
   for (i = 0; i < loop; i ++) {
     gen_rand_expr();
