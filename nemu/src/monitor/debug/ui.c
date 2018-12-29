@@ -100,6 +100,7 @@ static int cmd_p(char *args){
 
     bool success=true;
     uint32_t result=expr(args,&success);
+    printf("%d\n",result);
     if(success==true)
         printf("%d\n",result);
     else
