@@ -109,7 +109,7 @@ static bool make_token(char *e) {
 					case TK_RES:
 					case TK_NUM_HEX:
 					{
-						tokens[nr_token].type=TK_NUM;
+						tokens[nr_token].type=rules[i].token_type;
 						strncpy(tokens[nr_token].str,substr_start,substr_len);
 						tokens[nr_token++].str[substr_len]='\0';
 						break;
