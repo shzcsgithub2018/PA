@@ -165,7 +165,7 @@ Token* pos_mop(Token *p,Token *q,bool *success){
 			continue;
 		}
 		if(is_inP!=0)continue;
-
+		Log("I'm here");
 		if(iter_p->type!='+' && iter_p->type!='-' 
 			&& iter_p->type!='*' && iter_p->type!='/')
 			continue;
@@ -177,7 +177,7 @@ Token* pos_mop(Token *p,Token *q,bool *success){
 			(iter_p->type=='*' || iter_p->type=='/'))
 		{
 			pos_mod=iter_p;
-			Log("I'm here");
+			
 		}
 	}
 	return pos_mod;
