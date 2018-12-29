@@ -1,4 +1,4 @@
-//#define TEST
+#define TEST
 #ifdef TEST
   #include "nemu.h"
   #include "monitor/monitor.h"
@@ -17,7 +17,7 @@ void ui_mainloop(int);
 
 int main(int argc, char *argv[]) {
 #ifdef TEST
-  int is_batch_mode = init_monitor(argc, argv);
+  init_monitor(argc, argv);
   FILE *fp=fopen("./tools/gen-expr/input","r");
   if(fp==NULL)
     return 0;
