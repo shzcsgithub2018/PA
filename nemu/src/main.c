@@ -36,8 +36,10 @@ int main(int argc, char *argv[]) {
 
     if(val==result)
       printf("true!\n");
-    else
+    else{
       printf("False!\n");
+      getchar();
+    }
   }
   fclose(fp);
 #else
