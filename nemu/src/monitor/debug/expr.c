@@ -229,6 +229,7 @@ uint32_t eval(Token *p,Token *q,bool *success){
 }
 
 uint32_t expr(char *e, bool *success) {
+	Log("Hello\n");
     if (!make_token(e)) {
         *success = false;
         return 0;
