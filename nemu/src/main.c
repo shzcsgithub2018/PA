@@ -1,4 +1,4 @@
-#define TEST
+//#define TEST
 #ifdef TEST
   #include "nemu.h"
   #include "monitor/monitor.h"
