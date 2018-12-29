@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 enum {
-    TK_NOTYPE = 256, TK_EQ,TK_NUM
+    TK_NOTYPE = 256,TK_NUM,TK_NUM_HEX,TK_RES, TK_EQ,TK_NEQ,TK_AND,TK_POINT
 
     /* TODO: Add more token types */
 
@@ -23,15 +23,20 @@ static struct rule {
      * Pay attention to the precedence level of different rules.
      */
 
-    {" +", TK_NOTYPE},            	// spaces
-    {"\\+", '+'},                 	// plus
-	{"-", '-'},						// decrease
-	{"\\*", '*'},					// multiply
-	{"/", '/'},						// divide
-	{"\\(",'('},					// Left parenthesis
-	{"\\)",')'},					// Right parenthesis
-	{"([1-9][0-9]*)|[0-9]",TK_NUM},	// Decimal integer
-    {"==", TK_EQ}                	// equal
+    {" +", TK_NOTYPE},            			// spaces
+    {"\\+", '+'},                 			// plus
+	{"-", '-'},								// decrease
+	{"\\*", '*'},							// multiply
+	{"/", '/'},								// divide
+	{"\\(",'('},							// Left parenthesis
+	{"\\)",')'},							// Right parenthesis
+	{"\\$(e(([a-d]x)|([bsi]p)|([ds]i)))", TK_RES},//regester
+	{"0x[0-9a-fA-F]{1,8}", TK_NUM_HEX},		// Hexadecimal integer
+	{"([1-9][0-9]{1,31})|[0-9]",TK_NUM},	// Decimal integer
+    {"==", TK_EQ},                			// equal
+	{"!=", TK_NEQ},							// not equal
+	{"&&", TK_AND},							//And operation
+	{"\\*", TK_POINT}						// point
 	
 };
 
@@ -94,17 +99,22 @@ static bool make_token(char *e) {
 					case '/':
 					case '(':
 					case ')':
+					case TK_EQ:
+					case TK_NEQ:
+					case TK_AND:
+					case TK_POINT:
 						tokens[nr_token++].type=rules[i].token_type;
 						break;
-					case TK_NUM:{
+					case TK_NUM:
+					case TK_RES:
+					case TK_NUM_HEX:
+					{
 						tokens[nr_token].type=TK_NUM;
 						strncpy(tokens[nr_token].str,substr_start,substr_len);
 						tokens[nr_token++].str[substr_len]='\0';
 						break;
 					}
 					case TK_NOTYPE:
-						break;
-					case TK_EQ:
 						break;
                     default: TODO();
                 }
@@ -141,7 +151,7 @@ bool check_parentheses(Token *p,Token *q,bool *success){
 		*success=false;
 	return false;
 }
-
+   
 Token* pos_mop(Token *p,Token *q,bool *success){
 	int is_inP=0,sign=0; 
 	Token *pos_mod=NULL;
@@ -231,7 +241,18 @@ uint32_t expr(char *e, bool *success) {
 	// 	Log("%s\n",tokens[i].str);
 	// }
     /* TODO: Insert codes to evaluate the expression. */
-	*success=true;
-	uint32_t result=eval(tokens,tokens+nr_token-1,success);
-	return result;
+	for (int i = 0; i < nr_token; i ++) {
+		if(tokens[i].type != '*' || ( i!=0 &&( tokens[i].type == ')' 
+										   	|| tokens[i].type == TK_NUM
+										   	|| tokens[i].type == TK_NUM_HEX 
+										   	|| tokens[i].type == TK_RES
+											) 
+									)
+			)
+			continue;
+		else
+    		tokens[i].type = TK_POINT;
+	}
+
+	return eval(tokens,tokens+nr_token-1,success);
 }
