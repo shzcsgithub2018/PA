@@ -15,7 +15,7 @@ void ui_mainloop(int);
 
 int main(int argc, char *argv[]) {
 
-  FILE *fp=fopen("./tools/gen-expr/input","w");
+  FILE *fp=fopen("./tools/gen-expr/input","r");
   int result;
   bool success=true;
   char buf[65576];
