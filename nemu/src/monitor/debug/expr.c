@@ -165,11 +165,12 @@ Token* pos_mop(Token *p,Token *q,bool *success){
 			continue;
 		}
 		if(is_inP!=0)continue;
-		Log("I'm here");
+		
 		if(iter_p->type!='+' && iter_p->type!='-' 
 			&& iter_p->type!='*' && iter_p->type!='/')
 			continue;
-		else if (iter_p->type=='+' || iter_p->type=='-'){
+		Log("I'm here");
+		if (iter_p->type=='+' || iter_p->type=='-'){
 			pos_mod=iter_p;
 			sign=1;
 		}
