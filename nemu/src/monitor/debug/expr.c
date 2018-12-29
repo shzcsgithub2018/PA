@@ -61,7 +61,7 @@ typedef struct token {
     char str[32];
 } Token;
 
-Token tokens[1000];
+Token tokens[10000];
 int nr_token;
 
 static bool make_token(char *e) {
@@ -80,8 +80,6 @@ static bool make_token(char *e) {
 
                 Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
                         i, rules[i].regex, position, substr_len, substr_len, substr_start);
-                Log("nr_token=%d",nr_token);
-
                 position += substr_len;
 
                 /* TODO: Now a new token is recognized with rules[i]. Add codes
@@ -98,21 +96,18 @@ static bool make_token(char *e) {
 					case ')':
 						tokens[nr_token++].type=rules[i].token_type;
 						break;
-
 					case TK_NUM:{
 						tokens[nr_token].type=TK_NUM;
 						strncpy(tokens[nr_token].str,substr_start,substr_len);
 						tokens[nr_token++].str[substr_len]='\0';
 						break;
 					}
-					
 					case TK_NOTYPE:
 						break;
 					case TK_EQ:
 						break;
                     default: TODO();
                 }
-
                 break;
             }
         }
