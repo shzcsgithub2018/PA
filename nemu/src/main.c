@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
   int result;
   bool success=true;
   char buf[65576];
+  printf("true!\n");
   while(fp){
     if(fscanf(fp,"%d %s\n",&result,buf)==EOF)
       return 0;
