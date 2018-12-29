@@ -100,13 +100,9 @@ static bool make_token(char *e) {
 						break;
 
 					case TK_NUM:{
-						int len=strlen(substr_start);
-						if(len>=32)
-							panic("Buffer overflow!");
-
 						tokens[nr_token].type=TK_NUM;
-						strcpy(tokens[nr_token].str,substr_start);
-						tokens[nr_token++].str[len]='\0';
+						strncpy(tokens[nr_token].str,substr_start,substr_len);
+						tokens[nr_token++].str[substr_len]='\0';
 						break;
 					}
 					
