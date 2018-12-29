@@ -201,6 +201,7 @@ uint32_t eval(Token *p,Token *q,bool *success){
 				return num;
 			}
 			case TK_RES:{
+				Log("I'm here!");
 				for(int i=0;i<8;i++)
 					if(strcmp(p->str+1,regsl[i])==0)
 						return cpu.gpr[i]._32;
