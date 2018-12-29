@@ -15,7 +15,7 @@ static inline void int_toString(int n,char *str){
   char s[6];
   int p_s=0;
 
-  while(n-->0){
+  while(n>0){
       s[p_s++]=n%10+'0';
       n/=10;
   }

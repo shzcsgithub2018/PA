@@ -215,7 +215,13 @@ uint32_t eval(Token *p,Token *q,bool *success){
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
-			case '/': return val1 / val2;
+			case '/': {
+				if(val2==0){
+					Log("Division by zero,the result is wrong!\n");
+					return 1;
+				}
+				return val1 / val2;
+			}
 			default: return 0;
     	}
 	}
@@ -227,11 +233,11 @@ uint32_t expr(char *e, bool *success) {
         *success = false;
         return 0;
     }
-	Log("nr_token=%d\n",nr_token);
-	for(int i=0;i<nr_token;i++){
-		Log("%c\t",tokens[i].type);
-		Log("%s\n",tokens[i].str);
-	}
+	// Log("nr_token=%d\n",nr_token);
+	// for(int i=0;i<nr_token;i++){
+	// 	Log("%c\t",tokens[i].type);
+	// 	Log("%s\n",tokens[i].str);
+	// }
     /* TODO: Insert codes to evaluate the expression. */
 	*success=true;
 	uint32_t result=eval(tokens,tokens+nr_token-1,success);
