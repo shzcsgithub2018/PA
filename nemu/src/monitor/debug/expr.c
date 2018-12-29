@@ -253,11 +253,11 @@ uint32_t expr(char *e, bool *success) {
         *success = false;
         return 0;
     }
-	Log("nr_token=%d\n",nr_token);
-	for(int i=0;i<nr_token;i++){
-		Log("%c\t",tokens[i].type);
-		Log("%s\n",tokens[i].str);
-	}
+	// Log("nr_token=%d\n",nr_token);
+	// for(int i=0;i<nr_token;i++){
+	// 	Log("%c\t",tokens[i].type);
+	// 	Log("%s\n",tokens[i].str);
+	// }
     /* TODO: Insert codes to evaluate the expression. */
 	for (int i = 0; i < nr_token; i ++) {
 		if(tokens[i].type != '*' || ( i!=0 &&( tokens[i-1].type == ')' 
@@ -272,11 +272,6 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].type = TK_POINT;
 			Log("%d",i);
 		}
-	}
-	Log("nr_token=%d\n",nr_token);
-	for(int i=0;i<nr_token;i++){
-		Log("%c\t",tokens[i].type);
-		Log("%s\n",tokens[i].str);
 	}
 	return eval(tokens,tokens+nr_token-1,success);
 }
