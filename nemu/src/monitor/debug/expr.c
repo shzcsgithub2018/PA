@@ -9,7 +9,7 @@
 
 enum {
     TK_NOTYPE = 256,TK_NUM,  TK_NUM_HEX,   TK_RES, 
-	TK_EQ,   TK_NEQ,    TK_AND,   TK_POINT
+	TK_EQ,   TK_NEQ,    TK_AND,   TK_POINT,  TK_NEGATIVE
 
     /* TODO: Add more token types */
 
@@ -37,7 +37,8 @@ static struct rule {
     {"==", TK_EQ},                			// equal
 	{"!=", TK_NEQ},							// not equal
 	{"&&", TK_AND},							//And operation
-	{"\\*", TK_POINT},						// point
+	{"\\*", TK_POINT},						// point 
+	{"-", TK_NEGATIVE},						// negative
 	
 };
 
@@ -104,6 +105,7 @@ static bool make_token(char *e) {
 					case TK_NEQ:
 					case TK_AND:
 					case TK_POINT:
+					case TK_NEGATIVE:
 						tokens[nr_token++].type=rules[i].token_type;
 						break;
 					case TK_NUM:
@@ -237,9 +239,9 @@ uint32_t eval(Token *p,Token *q,bool *success){
 
 		Token *op = pos_mop(p,q,success);
 
-		if(op==NULL && p->type==TK_POINT)
+		if(op==NULL)
 			op=p;
-		else
+		else 
 			val1 = eval(p, op - 1,success);
 		val2 = eval(op + 1, q,success);
 
@@ -254,6 +256,16 @@ uint32_t eval(Token *p,Token *q,bool *success){
 				}
 				else
 					return val1 / val2;
+			}
+			case TK_NEGATIVE:{
+				Token *tmp=p-1;
+				if(tmp->type=='+')
+					tmp->type='-';
+				else if(tmp->type=='-')
+					tmp->type='+';
+				else
+					assert(0);
+				return val2;
 			}
 			case TK_POINT:return vaddr_read(val2,4);
 			case TK_EQ: return val1==val2?1:0;
@@ -287,6 +299,18 @@ uint32_t expr(char *e, bool *success) {
 			continue;
 		else
 			tokens[i].type = TK_POINT;
+	}
+	for (int i = 0; i < nr_token; i ++) {
+		if(tokens[i].type != '-' || ( i!=0 &&( tokens[i-1].type == ')' 
+										   	|| tokens[i-1].type == TK_NUM
+										   	|| tokens[i-1].type == TK_NUM_HEX 
+										   	|| tokens[i-1].type == TK_RES
+											) 
+									)
+		)
+			continue;
+		else
+			tokens[i].type = TK_NEGATIVE;
 	}
 	return eval(tokens,tokens+nr_token-1,success);
 }
