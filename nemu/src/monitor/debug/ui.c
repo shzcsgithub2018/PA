@@ -104,6 +104,23 @@ static int cmd_p(char *args){
 }
 
 static int cmd_w(char *args){
+    if(args==NULL){
+        Log("Please input current arguments");
+        return 0;
+    }
+
+    WP *head=new_wp(args);
+
+    int sign=1;
+    while(sign){
+        cpu_exec(1);
+        WP *change=result_change(head);
+        if(change!=NULL){
+            nemu_state=NEMU_STOP;
+            sign=0;
+        }
+    }
+
     return 0;
 }
 

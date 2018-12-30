@@ -7,22 +7,71 @@ static WP wp_pool[NR_WP];
 static WP *head, *free_;
 
 void init_wp_pool() {
-  int i;
-  for (i = 0; i < NR_WP; i ++) {
-    wp_pool[i].NO = i;
-    wp_pool[i].next = &wp_pool[i + 1];
-  }
-  wp_pool[NR_WP - 1].next = NULL;
+    int i;
+    for (i = 0; i < NR_WP; i ++) {
+        wp_pool[i].NO = i;
+        wp_pool[i].next = &wp_pool[i + 1];
+    }
+    wp_pool[NR_WP - 1].next = NULL;
 
-  head = NULL;
-  free_ = wp_pool;
+    head = NULL;
+    free_ = wp_pool;
 }
 
 /* TODO: Implement the functionality of watchpoint */
-WP* new_wp(){
-  return free_;
+uint32_t result_Cal(char *args){
+    bool success=true;
+    uint32_t result=expr(args,&success);
+
+    if(success!=true)
+        Log("Please input current expression");
+
+    return result;
+}
+
+WP* new_wp(char *args){
+    if(free_==NULL)
+        assert(0);
+
+    WP *tmp=free_;
+    free_=free_->next;
+
+    printf("watchpoint: %d\n\n",tmp->NO);
+    tmp->last_result=result_Cal(args);
+    strcpy(tmp->expr,args);
+
+    tmp->next=head;
+    head=tmp;
+
+    return head;
 }
 
 void free_wp(WP* wp){
+    assert(wp!=NULL);
 
+    head=wp->next;
+    wp->next=free_;
+    free_=wp;
+}
+
+WP* result_change(WP* wp){
+    assert(wp!=NULL);
+
+    uint32_t now_result;
+
+    for(WP *iter_wp=wp;iter_wp!=NULL;iter_wp=iter_wp->next){
+        now_result=result_Cal(iter_wp->expr);
+
+        if(now_result!=iter_wp->last_result){
+            printf("watchpoint: %d\n\n",iter_wp->NO);
+            printf("Old value = %u",iter_wp->last_result);
+            printf("New value = %u\n",now_result);
+
+            iter_wp->last_result=now_result;
+
+            return iter_wp;
+        }
+    }
+    
+    return NULL;
 }
