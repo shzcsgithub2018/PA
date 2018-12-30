@@ -54,6 +54,7 @@ void free_wp(int NO){
         head=head->next;
         tmp->next=free_;
         free_=tmp;
+        return ;
     }
     for(WP *iter_wp=head;iter_wp->next!=NULL;iter_wp=iter_wp->next){
         if(iter_wp->next->NO==NO){
@@ -61,10 +62,11 @@ void free_wp(int NO){
             iter_wp->next=iter_wp->next->next;
             tmp->next=free_;
             free_=tmp;
+            return ;
         }
     }
-    
-    
+
+    Log("Not exits NO watchpoint.");
 }
 
 void printf_wp(){
@@ -72,7 +74,7 @@ void printf_wp(){
 
     for(WP *iter_wp=head;iter_wp!=NULL;iter_wp=iter_wp->next){
         printf("watchpoint %d:%s\n",iter_wp->NO,iter_wp->expr);
-        printf("Now value = %u",iter_wp->last_result);
+        printf("Now value = %u\n",iter_wp->last_result);
     }
 }
 
@@ -86,7 +88,7 @@ WP* result_change(){
 
         if(now_result!=iter_wp->last_result){
             printf("watchpoint %d:%s\n\n",iter_wp->NO,iter_wp->expr);
-            printf("Old value = %u",iter_wp->last_result);
+            printf("Old value = %u\n",iter_wp->last_result);
             printf("New value = %u\n",now_result);
 
             iter_wp->last_result=now_result;
