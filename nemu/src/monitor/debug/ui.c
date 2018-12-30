@@ -65,7 +65,7 @@ static int cmd_info(char *args){
                     cpu.edi,cpu.edi,cpu.esi,cpu.esi,cpu.esp,cpu.esp,cpu.ebp,cpu.ebp);
         printf("eip\t%-15d0x%-15x\n",cpu.eip,cpu.eip);
     }else if(strcmp(arg,"w")==0){
-
+        printf_wp();
     }
 
     return 0;
@@ -124,6 +124,15 @@ static int cmd_w(char *args){
 }
 
 static int cmd_d(char *args){
+    char *arg=strtok(NULL," ");
+    if(arg==NULL){
+        Log("Please input current arguments");
+        return 0;
+    }
+
+    int NO=atoi(arg);
+    free_wp(NO);
+
     return 0;
 }
 static struct {

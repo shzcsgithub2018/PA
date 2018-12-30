@@ -46,24 +46,46 @@ WP* new_wp(char *args){
     return head;
 }
 
-void free_wp(WP* wp){
-    assert(wp!=NULL);
+void free_wp(int NO){
+    assert(head!=NULL);
 
-    head=wp->next;
-    wp->next=free_;
-    free_=wp;
+    if(head->NO==NO){
+        WP *tmp=head;
+        head=head->next;
+        tmp->next=free_;
+        free_=tmp;
+    }
+    for(WP *iter_wp=head;iter_wp->next!=NULL;iter_wp=iter_wp->next){
+        if(iter_wp->next->NO==NO){
+            WP *tmp=iter_wp->next;
+            iter_wp->next=iter_wp->next->next;
+            tmp->next=free_;
+            free_=tmp;
+        }
+    }
+    
+    
 }
 
-WP* result_change(WP* wp){
-    assert(wp!=NULL);
+void printf_wp(){
+    assert(head!=NULL);
+
+    for(WP *iter_wp=head;iter_wp!=NULL;iter_wp=iter_wp->next){
+        printf("watchpoint %d:%s\n",iter_wp->NO,iter_wp->expr);
+        printf("Now value = %u",iter_wp->last_result);
+    }
+}
+
+WP* result_change(){
+    assert(head!=NULL);
 
     uint32_t now_result;
 
-    for(WP *iter_wp=wp;iter_wp!=NULL;iter_wp=iter_wp->next){
+    for(WP *iter_wp=head;iter_wp!=NULL;iter_wp=iter_wp->next){
         now_result=result_Cal(iter_wp->expr);
 
         if(now_result!=iter_wp->last_result){
-            printf("watchpoint: %d\n\n",iter_wp->NO);
+            printf("watchpoint %d:%s\n\n",iter_wp->NO,iter_wp->expr);
             printf("Old value = %u",iter_wp->last_result);
             printf("New value = %u\n",now_result);
 

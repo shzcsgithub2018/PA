@@ -12,8 +12,10 @@ typedef struct watchpoint {
   uint32_t last_result;
 
 } WP;
-WP* result_change(WP* wp);
-WP* new_wp(char *args);
-void free_wp(WP* wp);
+
+WP* result_change();
+WP* new_wp(char *);
+void free_wp(int);
+void printf_wp();
 
 #endif
