@@ -8,7 +8,8 @@
 #include <stdlib.h>
 
 enum {
-    TK_NOTYPE = 256,TK_NUM,TK_NUM_HEX,TK_RES, TK_EQ,TK_NEQ,TK_AND,TK_POINT
+    TK_NOTYPE = 256,TK_NUM,  TK_NUM_HEX,   TK_RES, 
+	TK_EQ,   TK_NEQ,    TK_AND,   TK_POINT
 
     /* TODO: Add more token types */
 
@@ -36,7 +37,7 @@ static struct rule {
     {"==", TK_EQ},                			// equal
 	{"!=", TK_NEQ},							// not equal
 	{"&&", TK_AND},							//And operation
-	{"\\*", TK_POINT}						// point
+	{"\\*", TK_POINT},						// point
 	
 };
 
