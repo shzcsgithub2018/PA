@@ -74,7 +74,7 @@ void printf_wp(){
 
     for(WP *iter_wp=head;iter_wp!=NULL;iter_wp=iter_wp->next){
         printf("watchpoint %d:%s\n",iter_wp->NO,iter_wp->expr);
-        printf("Now value = %u\n",iter_wp->last_result);
+        printf("Now value = %u\n\n",iter_wp->last_result);
     }
 }
 
