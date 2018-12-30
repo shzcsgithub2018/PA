@@ -111,13 +111,12 @@ static int cmd_w(char *args){
 
     WP *head=new_wp(args);
 
-    int sign=1;
-    while(sign){
+    while(1){
         cpu_exec(1);
         WP *change=result_change(head);
         if(change!=NULL){
             nemu_state=NEMU_STOP;
-            sign=0;
+            return 0;
         }
     }
 
