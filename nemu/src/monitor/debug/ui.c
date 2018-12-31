@@ -81,7 +81,7 @@ static int cmd_x(char *args){
 
     int num=atoi(arg1);
     bool success=true;
-    vaddr_t addr=expr(args,&success);
+    vaddr_t addr=expr(arg2,&success);
     if(success==false)
         Log("Please input current expression");
 
