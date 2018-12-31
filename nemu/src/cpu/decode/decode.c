@@ -110,10 +110,6 @@ static inline make_DopHelper(O) {
 #endif
 }
 
-make_DHelper(call){
-
-}
-
 /* Eb <- Gb
  * Ev <- Gv
  */
@@ -332,4 +328,10 @@ void operand_write(Operand *op, rtlreg_t* src) {
   if (op->type == OP_TYPE_REG) { rtl_sr(op->reg, src, op->width); }
   else if (op->type == OP_TYPE_MEM) { rtl_sm(&op->addr, src, op->width); }
   else { assert(0); }
+}
+
+
+make_DHelper(call_rel32){
+    decode_op_SI(eip,id_dest,true);
+    decoding.jmp_eip = id_dest->simm + *eip;
 }
