@@ -72,13 +72,18 @@ static int cmd_info(char *args){
 }
 
 static int cmd_x(char *args){
-    if(args==NULL)
+    char *arg1=strtok(NULL," ");
+    char *arg2=strtok(NULL," ");
+     if(!arg1||!arg2){
+        Log("Please input current arguments");
         return 0;
-        
-    vaddr_t addr;
-    int num;
-    if(sscanf(args,"%d%x",&num,&addr)!=2)
-        return 0;
+    }
+
+    int num=atoi(arg1);
+    bool success=true;
+    vaddr_t addr=expr(args,&success);
+    if(success==false)
+        Log("Please input current expression");
 
     printf("%-15s\t        %-15s\n","addr","val");
     for(int i=0;i<num;i++,addr+=4)
@@ -88,7 +93,7 @@ static int cmd_x(char *args){
 }
 
 static int cmd_p(char *args){
-     if(args==NULL){
+    if(args==NULL){
         Log("Please input current arguments");
         return 0;
     }
