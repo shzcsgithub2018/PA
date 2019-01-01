@@ -347,3 +347,9 @@ make_DHelper(pop_r32){
 make_DHelper(xor_E2G){
   decode_op_rm(eip, id_src, true, id_dest, true);
 }
+
+make_DHelper(add_r_G2E){
+  decode_op_rm(eip,id_src,true,id_src2,true);
+  Log("ebx = 0x%x ",id_src->val);
+  Log("0x%x ",id_src2->val);
+}

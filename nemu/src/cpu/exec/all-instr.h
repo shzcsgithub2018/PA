@@ -23,3 +23,5 @@ make_EHelper(lea);
 make_EHelper(and);
 
 make_EHelper(xchg);
+
+make_EHelper(add);
