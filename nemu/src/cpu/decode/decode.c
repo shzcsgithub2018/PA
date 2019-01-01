@@ -352,4 +352,5 @@ make_DHelper(add_r_G2E){
   decode_op_rm(eip,id_src,true,id_src2,true);
   Log("ebx = 0x%x ",id_src->val);
   Log("0x%x ",id_src2->val);
+  Log("ebx = 0x%x ",cpu.ebx);
 }
