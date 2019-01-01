@@ -10,6 +10,7 @@ make_EHelper(nemu_trap);
 make_EHelper(call);
 
 make_EHelper(push);
+make_EHelper(pop);
 
 make_EHelper(sub);
 
