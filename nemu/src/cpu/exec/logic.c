@@ -32,9 +32,10 @@ make_EHelper(xor) {
 }
 
 make_EHelper(or) {
+  Log("edx=0x%x   eax=0x%x\n",cpu.edx,cpu.eax);
   rtl_or(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest,&id_dest->val);
-
+  Log("edx=0x%x   eax=0x%x\n",cpu.edx,cpu.eax);
   print_asm_template2(or);
 }
 
