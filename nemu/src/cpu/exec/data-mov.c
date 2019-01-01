@@ -75,10 +75,15 @@ make_EHelper(lea) {
 
 make_EHelper(xchg){
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
+
+  Log("eax = 0x%x\n",cpu.eax);
+  Log("ebx = 0x%x\n",cpu.ebx);
   t0=id_dest->val;
-
   operand_write(id_dest, &cpu.eax);
-  rtl_sr(0,&t0,id_dest->width);
+  rtl_sr(1,&t0,id_dest->width);
 
+  Log("eax = 0x%x\n",cpu.eax);
+  Log("ebx = 0x%x\n",cpu.ebx);
+  
   print_asm_template2(xchg);
 }
