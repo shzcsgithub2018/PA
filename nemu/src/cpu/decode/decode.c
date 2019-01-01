@@ -349,5 +349,5 @@ make_DHelper(xor_E2G){
 }
 
 make_DHelper(xchg_E2G){
-  decode_op_rm(eip, id_src, true, id_dest, true);
+  //decode_op_rm(eip, id_src, true, id_dest, true);
 }
