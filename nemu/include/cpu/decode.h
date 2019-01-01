@@ -118,6 +118,6 @@ make_DHelper(call_rel32);
 make_DHelper(push_r32);
 make_DHelper(pop_r32);
 
-make_DHelper(xor_G2E);
+make_DHelper(xor_E2G);
 
 #endif
