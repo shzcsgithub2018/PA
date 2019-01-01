@@ -1,8 +1,9 @@
 #include "cpu/exec.h"
 
 make_EHelper(add) {
-  TODO();
-
+  Log("ebx=0x%x",cpu.ebx);
+  rtl_add(&id_dest->val,&id_dest->val,&id_src->val);
+  Log("ebx=0x%x",cpu.ebx);
   print_asm_template2(add);
 }
 
