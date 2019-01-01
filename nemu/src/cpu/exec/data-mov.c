@@ -78,5 +78,5 @@ make_EHelper(xchg){
   //operand_write(id_dest, &id_src->val);
   //operand_write(id_src, &at);
 
-  print_asm_template2(xchg);
+  //print_asm_template2(xchg);
 }
