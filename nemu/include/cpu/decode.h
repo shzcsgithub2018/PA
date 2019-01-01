@@ -120,4 +120,6 @@ make_DHelper(pop_r32);
 
 make_DHelper(xor_E2G);
 
+make_DHelper(xchg_E2G);
+
 #endif
