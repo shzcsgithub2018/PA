@@ -348,6 +348,10 @@ make_DHelper(xor_E2G){
   decode_op_rm(eip, id_src, true, id_dest, true);
 }
 
-make_DHelper(add_G2E){
+make_DHelper(add_E2G){
   decode_op_rm(eip, id_src, true, id_dest, false);
+}
+
+make_DHelper(adc_E2G){
+    decode_op_rm(eip, id_src, true, id_dest, false);
 }
