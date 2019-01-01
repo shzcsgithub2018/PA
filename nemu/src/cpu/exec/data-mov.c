@@ -76,16 +76,16 @@ make_EHelper(lea) {
 make_EHelper(xchg){
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
 
-  Log("eax = 0x%x\n",cpu.eax);
-  Log("ebx = 0x%x\n",cpu.ebx);
-  Log("id_dest-val=0x%x",id_dest->val);
+  // Log("eax = 0x%x\n",cpu.eax);
+  // Log("ebx = 0x%x\n",cpu.ebx);
+  // Log("id_dest-val=0x%x",id_dest->val);
+  
   t0=id_dest->val;
-  operand_write(id_dest, &cpu.ebx);
-  rtl_sr(3,&t0,id_dest->width);
+  operand_write(id_dest, &cpu.eax);
+  rtl_sr(0,&t0,id_dest->width);
 
-
-  Log("eax = 0x%x\n",cpu.eax);
-  Log("ebx = 0x%x\n",cpu.ebx);
+  // Log("eax = 0x%x\n",cpu.eax);
+  // Log("ebx = 0x%x\n",cpu.ebx);
 
   print_asm_template2(xchg);
 }
