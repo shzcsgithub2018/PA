@@ -16,7 +16,7 @@ make_EHelper(and) {
 make_EHelper(xor) {
   Log("id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
 
-  rtl_xor(&id_dest->val,&id_dest->val,&id_src->val);
+  rtl_xor(&id_dest->addr,&id_dest->val,&id_src->val);
   rtl_host_sm(&id_dest->addr,&id_dest->val,4);
   Log("id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
 
