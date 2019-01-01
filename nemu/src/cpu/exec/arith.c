@@ -47,7 +47,6 @@ make_EHelper(neg) {
 }
 
 make_EHelper(adc) {
-  Log("I'm hear!");
   rtl_add(&t2, &id_dest->val, &id_src->val);
   rtl_setrelop(RELOP_LTU, &t3, &t2, &id_dest->val);
   rtl_get_CF(&t1);
@@ -67,7 +66,6 @@ make_EHelper(adc) {
   rtl_msb(&t0, &t0, id_dest->width);
   rtl_set_OF(&t0);
 
-  Log("I'm hear!");
   print_asm_template2(adc);
 }
 
