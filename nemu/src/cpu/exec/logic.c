@@ -9,14 +9,14 @@ make_EHelper(test) {
 
 make_EHelper(and) {
 
-  Log("esp=0x%x\n",cpu.esp);
-  Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
+  // Log("esp=0x%x\n",cpu.esp);
+  // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
 
   rtl_and(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest, &id_dest->val);
 
-  Log("esp=0x%x\n",cpu.esp);
-  Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
+  // Log("esp=0x%x\n",cpu.esp);
+  // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
 
   print_asm_template2(and);
 }
