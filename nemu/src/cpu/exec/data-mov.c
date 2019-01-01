@@ -82,7 +82,7 @@ make_EHelper(xchg){
   t0=id_dest->val;
   operand_write(id_dest, &cpu.ebx);
  // rtl_sr(1,&t0,id_dest->width);
-  cpu.gpr[1]._16 = t0;
+  cpu.gpr[1]._32 = t0;
 
   Log("eax = 0x%x\n",cpu.eax);
   Log("ebx = 0x%x\n",cpu.ebx);
