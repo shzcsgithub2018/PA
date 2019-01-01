@@ -66,6 +66,7 @@ make_EHelper(adc) {
   rtl_msb(&t0, &t0, id_dest->width);
   rtl_set_OF(&t0);
 
+  Log("I'm hear!");
   print_asm_template2(adc);
 }
 
