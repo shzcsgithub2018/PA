@@ -74,9 +74,9 @@ make_EHelper(lea) {
 }
 
 make_EHelper(xchg){
-  //rtlreg_t at=id_dest->val;
-  //operand_write(id_dest, &id_src->val);
-  //operand_write(id_src, &at);
+  rtlreg_t at=id_dest->val;
+  rtl_sr(id_dest->val,&cpu.eax,id_dest->width);
+  rtl_lr(&cpu.eax,at,id_dest->width);
 
-  //print_asm_template2(xchg);
+  print_asm_template2(xchg);
 }
