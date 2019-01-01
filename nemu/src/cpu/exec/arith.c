@@ -1,10 +1,9 @@
 #include "cpu/exec.h"
 
 make_EHelper(add) {
-  // Log("ebx=0x%x",cpu.ebx);
+  Log("ebx=0x%x",cpu.ebx);
   rtl_add(&id_dest->val,&id_dest->val,&id_src->val);
-  // Log("ebx=0x%x",cpu.ebx);
-
+  Log("ebx=0x%x",cpu.ebx);
   print_asm_template2(add);
 }
 
@@ -13,6 +12,7 @@ make_EHelper(sub) {
   Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
 
   rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
+  operand_write(id_dest,&id_dest->val);
 
   Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
   Log("esp=0x%x\n",cpu.esp);
