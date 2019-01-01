@@ -80,7 +80,7 @@ make_EHelper(xchg){
   Log("ebx = 0x%x\n",cpu.ebx);
   Log("id_dest-val=0x%x",id_dest->val);
   t0=id_dest->val;
-  operand_write(id_dest, &cpu.eax);
+  operand_write(id_dest, &cpu.ebx);
   rtl_sr(1,&t0,id_dest->width);
 
   Log("eax = 0x%x\n",cpu.eax);
