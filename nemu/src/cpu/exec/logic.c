@@ -20,7 +20,7 @@ make_EHelper(xor) {
   rtl_host_sm(&id_dest->addr,&id_dest->val,4);
   Log("id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
 
-  Log("eax=%u\n",cpu.eax);
+  Log("eax=%u\n",cpu.eax=0);
   print_asm_template2(xor);
 }
 
