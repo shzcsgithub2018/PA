@@ -16,11 +16,10 @@ make_EHelper(and) {
 make_EHelper(xor) {
   Log("id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
 
-  rtl_xor(&id_dest->addr,&id_dest->val,&id_src->val);
-  rtl_host_sm(&id_dest->addr,&id_dest->val,4);
+  rtl_xor(&id_dest->val,&id_dest->val,&id_src->val);
   Log("id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
-
-  Log("eax=%u\n",cpu.eax=0);
+  operand_write(id_src, &id_dest->val);
+  Log("eax=%u\n",cpu.eax);
   print_asm_template2(xor);
 }
 
