@@ -1,3 +1,4 @@
+//暂时不写
 #include "trap.h"
 
 char buf[128];
