@@ -8,7 +8,11 @@ make_EHelper(test) {
 }
 
 make_EHelper(and) {
-  TODO();
+  rtl_add(&id_dest->val,&id_dest->val,&id_src->val);
+  Log("id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
+
+  operand_write(id_dest, &id_dest->val);
+  Log("eax=%u\n",cpu.esp);
 
   print_asm_template2(and);
 }
