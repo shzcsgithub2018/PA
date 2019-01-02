@@ -49,7 +49,7 @@ make_EHelper(xor) {
 }
 
 make_EHelper(or) {
-  Log("edx=0x%x   eax=0x%x\n",cpu.edx=0x0101,cpu.eax);
+  Log("edx=0x%x   eax=0x%x\n",cpu.edx,cpu.eax);
   Log("dest->val=0x%x   src->val=0x%x",id_dest->val,id_src->val);
   rtl_or(&id_dest->val,&id_dest->val,&id_src->val);
   Log("dest->val=0x%x   src->val=0x%x",id_dest->val,id_src->val);
