@@ -2,8 +2,17 @@
 #include "cpu/cc.h"
 
 make_EHelper(test) {
-  TODO();
+  rtl_and(&t0,&id_dest->val,&id_src->val);
 
+  t1=0;
+  rtl_set_CF(&t1);
+  rtl_set_OF(&t1);
+  
+  if(t0==0){
+    t1=1;
+    rtl_set_CF(&t1);
+  }
+  
   print_asm_template2(test);
 }
 
