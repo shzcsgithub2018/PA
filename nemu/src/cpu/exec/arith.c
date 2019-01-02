@@ -35,7 +35,15 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
-  TODO();
+  // TODO();
+  rtl_sext(&t0,&id_src->val,id_dest->width);
+  rtl_sub(&t0,&id_dest->val,&id_src->val);
+
+  if(t0==0)
+    rtl_li(&t1, 1);
+  else
+    rtl_li(&t1, 0);
+  rtl_set_ZF(&t1);
 
   print_asm_template2(cmp);
 }
