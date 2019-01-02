@@ -11,14 +11,14 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
-  Log("esp=0x%x\n",cpu.esp);
+  Log("sub   esp=0x%x\n",cpu.esp);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
   
   rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest,&id_dest->val);
 
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
-  Log("esp=0x%x\n",cpu.esp);
+  Log("sub   esp=0x%x\n",cpu.esp);
   print_asm_template2(sub);
 }
 
