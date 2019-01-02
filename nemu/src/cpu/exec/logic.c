@@ -39,7 +39,7 @@ make_EHelper(and) {
 
 make_EHelper(xor) {
   rtl_xor(&id_dest->val,&id_dest->val,&id_src->val);
-  // Log("id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
+  Log("XOR    id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
 
   
   operand_write(id_dest, &id_dest->val);
@@ -49,13 +49,22 @@ make_EHelper(xor) {
 }
 
 make_EHelper(or) {
-  Log("edx=0x%x   eax=0x%x\n",cpu.edx,cpu.eax);
-  Log("dest->val=0x%x   src->val=0x%x",id_dest->val,id_src->val);
+  // Log("edx=0x%x   eax=0x%x\n",cpu.edx,cpu.eax);
+  // Log("dest->val=0x%x   src->val=0x%x",id_dest->val,id_src->val);
   rtl_or(&id_dest->val,&id_dest->val,&id_src->val);
-  Log("dest->val=0x%x   src->val=0x%x",id_dest->val,id_src->val);
+  // Log("dest->val=0x%x   src->val=0x%x",id_dest->val,id_src->val);
   operand_write(id_dest,&id_dest->val);
-  Log("dest->val=0x%x   src->val=0x%x",id_dest->val,id_src->val);
-  Log("edx=0x%x   eax=0x%x\n",cpu.edx,cpu.eax);
+  
+  rtl_li(&t0,0);
+  rtl_set_CF(&t0);
+  rtl_set_OF(&t0);
+
+  if(id_dest->val==0){
+    rtl_li(&t0,1);
+    rtl_set_ZF(&t0);
+  }
+  // Log("dest->val=0x%x   src->val=0x%x",id_dest->val,id_src->val);
+  // Log("edx=0x%x   eax=0x%x\n",cpu.edx,cpu.eax);
   print_asm_template2(or);
 }
 
