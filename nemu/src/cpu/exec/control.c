@@ -41,6 +41,7 @@ make_EHelper(ret) {
   Log("ret pop val=0x%x\n",decoding.seq_eip);
 
   print_asm("ret");
+  Log("ret pop val=0x%x\n",decoding.seq_eip);
 }
 
 make_EHelper(call_rm) {
