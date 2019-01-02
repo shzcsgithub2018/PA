@@ -32,8 +32,10 @@ make_EHelper(popa) {
 make_EHelper(leave) {
 
   Log("I'm here_1");
+  rtl_sr(4,&cpu.ebp,4);
   rtl_pop(&cpu.ebp);
   Log("I'm here_1");
+
   print_asm("leave");
 }
 
