@@ -71,7 +71,7 @@ make_EHelper(movzx) {
 }
 
 make_EHelper(lea) {
-  Log("ecx=x%x  0x4(esp)=0x%x",cpu.ecx,vaddr_read(cpu.esp+4,4));
+  Log("ecx=x%x  0x4(esp)=0x%x",vaddr_read(id_src->addr,4),vaddr_read(cpu.esp+4,4));
   operand_write(id_dest, &id_src->addr);
   Log("ecx=x%x",cpu.ecx);
   print_asm_template2(lea);
