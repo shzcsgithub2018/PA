@@ -29,7 +29,7 @@ char* rl_gets() {
 
 static int cmd_c(char *args) {
     if(args){
-        Log("Please input current arguments");
+        printf("Please input current arguments");
         return 0;
     }
     cpu_exec(-1);
@@ -54,7 +54,7 @@ static int cmd_si(char *args){
 static int cmd_info(char *args){
     char *arg=strtok(NULL," ");
     if(arg==NULL){
-        Log("Please input current arguments");
+        printf("Please input current arguments");
         return 0;
     }
 
@@ -75,7 +75,7 @@ static int cmd_x(char *args){
     char *arg1=strtok(NULL," ");
     char *arg2=strtok(NULL," ");
      if(!arg1||!arg2){
-        Log("Please input current arguments");
+        printf("Please input current arguments");
         return 0;
     }
 
@@ -83,7 +83,7 @@ static int cmd_x(char *args){
     bool success=true;
     vaddr_t addr=expr(arg2,&success);
     if(success==false)
-        Log("Please input current expression");
+        printf("Please input current expression");
 
     printf("%-15s\t        %-15s\n","addr","val");
     for(int i=0;i<num;i++,addr+=4)
@@ -94,7 +94,7 @@ static int cmd_x(char *args){
 
 static int cmd_p(char *args){
     if(args==NULL){
-        Log("Please input current arguments");
+        printf("Please input current arguments");
         return 0;
     }
 
@@ -103,27 +103,18 @@ static int cmd_p(char *args){
     if(success==true)
         printf("%d\n",result);
     else
-        Log("Please input current expression");
+        printf("Please input current expression");
 
     return 0;
 }
 
 static int cmd_w(char *args){
     if(args==NULL){
-        Log("Please input current arguments");
+        printf("Please input current arguments");
         return 0;
     }
 
-    WP *head=new_wp(args);
-
-    while(1){
-        cpu_exec(1);
-        WP *change=result_change(head);
-        if(change!=NULL){
-            nemu_state=NEMU_STOP;
-            return 0;
-        }
-    }
+    new_wp(args);
 
     return 0;
 }
@@ -131,7 +122,7 @@ static int cmd_w(char *args){
 static int cmd_d(char *args){
     char *arg=strtok(NULL," ");
     if(arg==NULL){
-        Log("Please input current arguments");
+        printf("Please input current arguments");
         return 0;
     }
 
