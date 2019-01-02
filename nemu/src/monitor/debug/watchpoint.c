@@ -78,7 +78,8 @@ void printf_wp(){
 }
 
 WP* result_change(){
-    assert(head!=NULL);
+    if(head==NULL)
+        return NULL;
 
     uint32_t now_result;
 
