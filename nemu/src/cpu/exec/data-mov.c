@@ -71,7 +71,9 @@ make_EHelper(movzx) {
 }
 
 make_EHelper(lea) {
+  Log("ecx=x%x",cpu.ecx);
   operand_write(id_dest, &id_src->addr);
+  Log("ecx=x%x",cpu.ecx);
   print_asm_template2(lea);
 }
 
