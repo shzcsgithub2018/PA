@@ -213,12 +213,7 @@ static make_EHelper(2byte_esc) {
 }
 
 make_EHelper(real) {
-  static int ss=1;
-  if(ss==1){
-    cpu.esp=0x100000;
-    ss=0;
-  }
-  Log("$esp=0x%x  *$esp=0x%x",cpu.esp,vaddr_read(cpu.esp,4));
+  Log("$esp=0x%x  *$esp=0x%x",cpu.eip,vaddr_read(cpu.eip,4));
   uint32_t opcode = instr_fetch(eip, 1);
   decoding.opcode = opcode;
   set_width(opcode_table[opcode].width);
