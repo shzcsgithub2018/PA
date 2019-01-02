@@ -38,6 +38,7 @@ make_EHelper(and) {
 }
 
 make_EHelper(xor) {
+  Log("XOR    id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
   rtl_xor(&id_dest->val,&id_dest->val,&id_src->val);
   Log("XOR    id_dest->val=%x id_src->val=%x\n",id_dest->val,id_src->val);
 
