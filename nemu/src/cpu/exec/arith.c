@@ -6,26 +6,31 @@ make_EHelper(add) {
   rtl_add(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest,&id_dest->val);
 
-  Log("ZF=%d",cpu.eflages.ZF);
-  if(t0==0){
+  // Log("ZF=%d",cpu.eflages.ZF);
+  if(id_dest->val==0)
     rtl_li(&t1, 1);
-    rtl_set_ZF(&t1);
-
-  }
-  Log("ZF=%d",cpu.eflages.ZF);
+  else
+    rtl_li(&t1, 1);
+  rtl_set_ZF(&t1);
+  // Log("ZF=%d",cpu.eflages.ZF);
   // Log("ebx=0x%x",cpu.ebx);
   print_asm_template2(add);
 }
 
 make_EHelper(sub) {
-  Log("sub   esp=0x%x\n",cpu.esp);
+  // Log("sub   esp=0x%x\n",cpu.esp);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
   
   rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest,&id_dest->val);
 
+  if(id_dest->val==0)
+    rtl_li(&t1, 1);
+  else
+    rtl_li(&t1, 1);
+  rtl_set_ZF(&t1);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
-  Log("sub   esp=0x%x\n",cpu.esp);
+  // Log("sub   esp=0x%x\n",cpu.esp);
   print_asm_template2(sub);
 }
 

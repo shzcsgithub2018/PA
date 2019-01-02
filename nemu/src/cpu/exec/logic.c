@@ -14,6 +14,9 @@ make_EHelper(test) {
     rtl_set_ZF(&t1);
 
   }
+  else
+    rtl_set_ZF(&t1);
+
   // Log("ZF=%d",cpu.eflages.ZF);
   print_asm_template2(test);
 }
@@ -31,6 +34,11 @@ make_EHelper(and) {
 
   operand_write(id_dest, &id_dest->val);
 
+  if(id_dest->val==0)
+    rtl_li(&t1, 1);
+  else
+    rtl_li(&t1, 0);
+  rtl_set_ZF(&t1);
   // Log("esp=0x%x\n",cpu.esp);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
 
@@ -49,10 +57,9 @@ make_EHelper(xor) {
   rtl_set_CF(&t0);
   rtl_set_OF(&t0);
 
-  if(id_dest->val==0){
+  if(id_dest->val==0)
     rtl_li(&t0,1);
-    rtl_set_ZF(&t0);
-  }
+  rtl_set_ZF(&t0);
 
   print_asm_template2(xor);
 }
@@ -68,10 +75,9 @@ make_EHelper(or) {
   rtl_set_CF(&t0);
   rtl_set_OF(&t0);
 
-  if(id_dest->val==0){
+  if(id_dest->val==0)
     rtl_li(&t0,1);
-    rtl_set_ZF(&t0);
-  }
+  rtl_set_ZF(&t0);
   // Log("dest->val=0x%x   src->val=0x%x",id_dest->val,id_src->val);
   // Log("edx=0x%x   eax=0x%x\n",cpu.edx,cpu.eax);
   print_asm_template2(or);
