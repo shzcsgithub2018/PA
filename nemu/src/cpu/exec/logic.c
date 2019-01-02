@@ -8,7 +8,7 @@ make_EHelper(test) {
   rtl_li(&t1, 0);
   rtl_set_CF(&t1);
   rtl_set_OF(&t1);
-  // Log("ZF=%d",cpu.eflages.ZF);
+  Log("ZF=%d",cpu.eflages.ZF);
   if(t0==0)
     rtl_li(&t1, 1);
   rtl_set_ZF(&t1);
