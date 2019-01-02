@@ -9,13 +9,9 @@ make_EHelper(test) {
   rtl_set_CF(&t1);
   rtl_set_OF(&t1);
   // Log("ZF=%d",cpu.eflages.ZF);
-  if(t0==0){
+  if(t0==0)
     rtl_li(&t1, 1);
-    rtl_set_ZF(&t1);
-
-  }
-  else
-    rtl_set_ZF(&t1);
+  rtl_set_ZF(&t1);
 
    Log("ZF=%d",cpu.eflages.ZF);
   print_asm_template2(test);
