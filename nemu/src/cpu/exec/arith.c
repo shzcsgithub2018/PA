@@ -6,7 +6,7 @@ make_EHelper(add) {
   rtl_add(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest,&id_dest->val);
 
-  // Log("ebx=0x%x",cpu.ebx);
+  Log("ebx=0x%x",cpu.ebx);
   print_asm_template2(add);
 }
 
