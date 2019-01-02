@@ -331,8 +331,8 @@ void operand_write(Operand *op, rtlreg_t* src) {
 make_DHelper(rel){
     decode_op_SI(eip,id_dest,true);
     decoding.jmp_eip = id_dest->simm + *eip;
-    Log("simm=0x%x  eip=0x%x",id_dest->simm,*eip);
-    Log("decoding.jmp_eip=0x%x",decoding.jmp_eip);
+    // Log("simm=0x%x  eip=0x%x",id_dest->simm,*eip);
+    // Log("decoding.jmp_eip=0x%x",decoding.jmp_eip);
 }
 
 make_DHelper(push_r32){
