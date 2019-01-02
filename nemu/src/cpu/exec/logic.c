@@ -27,7 +27,7 @@ make_EHelper(and) {
   rtl_sext(&t0,&id_src->val,id_src->val);
   rtl_and(&id_dest->val,&id_dest->val,&t0);
 
-  Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
+  Log("dest= 0x%x src=0x%x\n",id_dest->val,t0);
 
   operand_write(id_dest, &id_dest->val);
 
