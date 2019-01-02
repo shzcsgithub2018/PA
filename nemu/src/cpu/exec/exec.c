@@ -228,6 +228,7 @@ make_EHelper(real) {
 static inline void update_eip(void) {
   if (decoding.is_jmp) { decoding.is_jmp = 0; }
   else { cpu.eip = decoding.seq_eip; }
+  Log("afffsfffafsdffasfsfs");
 }
 
 void exec_wrapper(bool print_flag) {
