@@ -29,7 +29,7 @@ uint32_t result_Cal(char *args){
     return result;
 }
 
-WP* new_wp(char *args){
+void new_wp(char *args){
     if(free_==NULL)
         assert(0);
 
@@ -43,7 +43,6 @@ WP* new_wp(char *args){
     tmp->next=head;
     head=tmp;
 
-    return head;
 }
 
 void free_wp(int NO){
@@ -66,7 +65,7 @@ void free_wp(int NO){
         }
     }
 
-    Log("Not exits NO watchpoint.");
+    printf("Not exits NO watchpoint.");
 }
 
 void printf_wp(){
