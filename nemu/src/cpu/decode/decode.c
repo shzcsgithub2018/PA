@@ -180,8 +180,19 @@ make_DHelper(I) {
   decode_op_I(eip, id_dest, true);
 }
 
+make_DHelper(rel){
+    decode_op_I(eip,id_dest,true);
+    decoding.jmp_eip = id_dest->simm + *eip;
+    // Log("simm=0x%x  eip=0x%x",id_dest->simm,*eip);
+    // Log("decoding.jmp_eip=0x%x",decoding.jmp_eip);
+}
+
 make_DHelper(r) {
   decode_op_r(eip, id_dest, true);
+}
+
+make_DHelper(pop_r32){
+  decode_op_r(eip, id_dest, false);
 }
 
 make_DHelper(E) {
@@ -329,28 +340,11 @@ void operand_write(Operand *op, rtlreg_t* src) {
 
 
 make_DHelper(rel){
-    decode_op_SI(eip,id_dest,true);
+    decode_op_r(eip,id_dest,true);
     decoding.jmp_eip = id_dest->simm + *eip;
     // Log("simm=0x%x  eip=0x%x",id_dest->simm,*eip);
     // Log("decoding.jmp_eip=0x%x",decoding.jmp_eip);
 }
 
-make_DHelper(push_r32){
-  decode_op_r(eip, id_dest, true);
-}
 
-make_DHelper(pop_r32){
-  decode_op_r(eip, id_dest, false);
-}
 
-make_DHelper(xor_E2G){
-  decode_op_rm(eip, id_src, true, id_dest, true);
-}
-
-make_DHelper(add_E2G){
-  decode_op_rm(eip, id_src, true, id_dest, false);
-}
-
-make_DHelper(adc_E2G){
-    decode_op_rm(eip, id_src, true, id_dest, false);
-}
