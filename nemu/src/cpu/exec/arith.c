@@ -2,7 +2,7 @@
 
 make_EHelper(add) {
   // Log("ebx=0x%x",cpu.ebx);
-
+  Log("fasfdfaff");
   rtl_add(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest,&id_dest->val);
 
@@ -10,7 +10,7 @@ make_EHelper(add) {
   if(id_dest->val==0)
     rtl_li(&t1, 1);
   else
-    rtl_li(&t1, 1);
+    rtl_li(&t1, 0);
   rtl_set_ZF(&t1);
   // Log("ZF=%d",cpu.eflages.ZF);
   // Log("ebx=0x%x",cpu.ebx);
@@ -27,7 +27,7 @@ make_EHelper(sub) {
   if(id_dest->val==0)
     rtl_li(&t1, 1);
   else
-    rtl_li(&t1, 1);
+    rtl_li(&t1, 0);
   rtl_set_ZF(&t1);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
   // Log("sub   esp=0x%x\n",cpu.esp);
