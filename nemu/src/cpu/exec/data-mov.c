@@ -7,11 +7,13 @@ make_EHelper(mov) {
 
 make_EHelper(push) {
   rtl_push(&id_dest->val);
+  Log("push $ebp=0x%x\n",id_dest->val);
   print_asm_template1(push);
 }
 
 make_EHelper(pop) {
   rtl_pop(&id_dest->val);
+  Log("pop $ebp=0x%x\n",id_dest->val);
   print_asm_template1(pop);
 }
 
