@@ -2,6 +2,7 @@
 #include "cpu/cc.h"
 
 make_EHelper(test) {
+  Log("eax=0x%x",cpu.eax);
   rtl_and(&t0,&id_dest->val,&id_src->val);
   Log("dest=0x%x   src=0x%x",id_dest->val,id_src->val);
   rtl_li(&t1, 0);
