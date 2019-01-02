@@ -223,6 +223,7 @@ make_EHelper(real) {
   decoding.opcode = opcode;
   set_width(opcode_table[opcode].width);
   idex(eip, &opcode_table[opcode]);
+  Log("fasf");
 }
 
 static inline void update_eip(void) {
