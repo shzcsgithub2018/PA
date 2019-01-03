@@ -3,7 +3,9 @@
 make_EHelper(add) {
   // Log("ebx=0x%x",cpu.ebx);
   // Log("fasfdfaff");
+  Log("id_dest->val=0x%x id_src->val=0x%x",id_dest->val,id_src->val);
   rtl_add(&id_dest->val,&id_dest->val,&id_src->val);
+  Log("add rusult=0x%x",id_dest->val);
   operand_write(id_dest,&id_dest->val);
   rtl_update_ZF(&id_dest->val,id_dest->width);
   // Log("ZF=%d",cpu.eflages.ZF);
@@ -28,7 +30,6 @@ make_EHelper(cmp) {
   rtl_sext(&t0,&id_src->val,id_dest->width);
   rtl_sub(&t0,&id_dest->val,&id_src->val);
   rtl_update_ZF(&t0,id_dest->width);
- 
 
   print_asm_template2(cmp);
 }
