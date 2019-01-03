@@ -40,6 +40,10 @@ make_EHelper(cmp) {
   // TODO();
   Log("$eip=0x%x",cpu.eip);
   Log("dest->val=0x%x  src->val=0x%x",id_dest->val,id_src->val);
+  rtl_get_ZF(&t0);
+  rtl_get_SF(&t1);
+  rtl_get_OF(&t2);
+  Log("ZF=%x SF=%x  OF=%x",t0,t1,t2);
   rtl_sext(&t0,&id_src->val,id_dest->width);
   rtl_sub(&t1,&id_dest->val,&t0);
 
@@ -50,7 +54,10 @@ make_EHelper(cmp) {
   else
     rtl_li(&t2,0);
   rtl_set_OF(&t2);
-
+  rtl_get_ZF(&t0);
+  rtl_get_SF(&t1);
+  rtl_get_OF(&t2);
+  Log("ZF=%x SF=%x  OF=%x",t0,t1,t2);
   print_asm_template2(cmp);
 }
 
