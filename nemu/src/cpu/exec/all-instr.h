@@ -39,6 +39,7 @@ make_EHelper(jcc);
 make_EHelper(leave);
 
 make_EHelper(cmp);
+make_EHelper(cmp_a);
 
 make_EHelper(sar);
 make_EHelper(shl);
