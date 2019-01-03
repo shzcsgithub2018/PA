@@ -155,8 +155,11 @@ static inline void rtl_not(rtlreg_t *dest, const rtlreg_t* src1) {
 
 static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- signext(src1[(width * 8 - 1) .. 0])
-  // Log("左移8位:0x%x",0xffffffff<<8);
-  *dest=(~0u<<(width*8))|*src1;
+  *dest=*src1>>(width*8-1);//get sign
+  if(*dest&1)
+    *dest=(~0u<<(width*8))|*src1;
+  else
+    *dest=*src1;
 }
 
 static inline void rtl_push(const rtlreg_t* src1) {
