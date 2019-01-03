@@ -38,6 +38,8 @@ make_EHelper(sub) {
 
 make_EHelper(cmp) {
   // TODO();
+  Log("$eip=0x%x",cpu.eip);
+  Log("dest->val=0x%x  src->val=0x%x",id_dest->val,id_src->val);
   rtl_sext(&t0,&id_src->val,id_dest->width);
   rtl_sub(&t1,&id_dest->val,&t0);
 
