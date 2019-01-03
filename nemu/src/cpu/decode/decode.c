@@ -174,12 +174,17 @@ make_DHelper(I2r) {
 
 make_DHelper(mov_I2r) {
   decode_op_r(eip, id_dest, false);
-  decode_op_I(eip, id_src, true);
+  decode_op_I(eip, id_src, true); 
 }
 
 /* used by unary operations */
 make_DHelper(I) {
   decode_op_I(eip, id_dest, true);
+}
+
+make_DHelper(cmp_I2a){
+  decode_op_I(eip, id_src, true);
+  decode_op_a(eip,id_dest,true);
 }
 
 make_DHelper(rel){

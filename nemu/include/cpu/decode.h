@@ -117,4 +117,5 @@ make_DHelper(rel);
 
 make_DHelper(pop_r32);
 
+make_DHelper(cmp_I2a);
 #endif

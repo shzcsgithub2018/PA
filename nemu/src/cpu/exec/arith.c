@@ -36,28 +36,6 @@ make_EHelper(sub) {
   print_asm_template2(sub);
 }
 
-make_EHelper(cmp_a) {
-  Log("here");
-  Log("dest->val=0x%x  dest->width=%d $cpu.eax=0x%x",id_dest->val,id_dest->width,cpu.eax);
-  rtl_sext(&t0,&cpu.eax,id_dest->width);
-
-  rtl_sub(&t1,&id_dest->val,&t0);
-  Log("t1=0x%x",t1);
-
-  t3=rtl_get_sign(&t0,id_dest->width);
-  at=rtl_get_sign(&id_dest->val,id_dest->width);
-  t2=rtl_get_sign(&t1,id_dest->width);
-
-  rtl_update_ZF(&t1,id_dest->width);
-  rtl_update_SF(&t1,id_dest->width);
-  if((!at&&t3&&t2)|| (at&&!t3&&!t2))
-    rtl_li(&t2,1);
-  else
-    rtl_li(&t2,0);
-  rtl_set_OF(&t2);
-  print_asm_template2(cmp);
-}
-
 make_EHelper(cmp) {
   rtl_sext(&t0,&id_src->val,id_dest->width);
   rtl_sub(&t1,&id_dest->val,&t0);
