@@ -38,9 +38,10 @@ make_EHelper(sub) {
 
 make_EHelper(cmp_a) {
   Log("here");
+  Log("dest->val=0x%x   $cpu.eax=0x%x",id_dest->val,cpu.eax);
   rtl_sext(&t0,&cpu.eax,id_dest->width);
   rtl_sub(&t1,&id_dest->val,&t0);
-  // Log("t1=0x%x",t1);
+  Log("t1=0x%x",t1);
 
   t3=rtl_get_sign(&t0,id_dest->width);
   at=rtl_get_sign(&id_dest->val,id_dest->width);
