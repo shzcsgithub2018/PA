@@ -227,4 +227,9 @@ static inline void rtl_update_OF(const rtlreg_t* result, int width) {
   if((*result & (~0u >> ((4 - width) << 3)))==0)
     cpu.eflages.ZF=0;
 } 
+
+static inline rtlreg_t rtl_get_sign(const rtlreg_t* result, int width) {
+  // eflags.SF <- is_sign(result[width * 8 - 1 .. 0])
+  return *result >> ((width << 3)-1);
+}
 #endif
