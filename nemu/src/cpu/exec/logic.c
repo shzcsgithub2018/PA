@@ -47,9 +47,7 @@ make_EHelper(xor) {
   rtl_set_CF(&t0);
   rtl_set_OF(&t0);
 
-  if(id_dest->val==0)
-    rtl_li(&t0,1);
-  rtl_set_ZF(&t0);
+  rtl_update_ZF(&id_dest->val,id_dest->width);
 
   print_asm_template2(xor);
 }
