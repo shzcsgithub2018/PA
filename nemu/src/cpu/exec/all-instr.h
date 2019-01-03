@@ -50,3 +50,5 @@ make_EHelper(inc);
 make_EHelper(imul2);
 
 make_EHelper(cltd);
+
+make_EHelper(idiv);
