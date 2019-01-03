@@ -42,7 +42,9 @@ static inline make_DopHelper(SI) {
    */
   op->simm = instr_fetch(eip, op->width);
   rtl_li(&at,op->simm);
+  Log("0x%x",op->simm);
   rtl_sext(&op->val,&at,op->width);
+  Log("0x%x",op->val);
 #ifdef DEBUG
   snprintf(op->str, OP_STR_SIZE, "$0x%x", op->simm);
 #endif
@@ -196,7 +198,7 @@ make_DHelper(pop_r32){
 }
 
 make_DHelper(E) {
-  decode_op_rm(eip, id_dest, true, id_src, true);
+  decode_op_rm(eip, id_dest, true, NULL, false);
 }
 
 make_DHelper(setcc_E) {
