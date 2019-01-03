@@ -74,8 +74,10 @@ make_EHelper(dec) {
 
 make_EHelper(neg) {
   // TODO();
+  Log("id_dest->val=0x%x",id_dest->val);
   rtl_not(&t0,&id_dest->val);
   rtl_addi(&id_dest->val,&t0,1);
+  Log("id_dest->val=0x%x\n",id_dest->val);
   operand_write(id_dest,&id_dest->val);
   print_asm_template1(neg);
 }
