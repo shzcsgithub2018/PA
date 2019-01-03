@@ -187,6 +187,11 @@ make_DHelper(cmp_I2a){
   decode_op_a(eip,id_dest,true);
 }
 
+make_DHelper(sub_I2a){
+  decode_op_I(eip, id_src, true);
+  decode_op_a(eip,id_dest,true);
+}
+
 make_DHelper(rel){
   decode_op_SI(eip,id_dest,true);
   // Log("rel   dest->val=0x%x   op->width=0x%x",id_dest->val,id_dest->width);
