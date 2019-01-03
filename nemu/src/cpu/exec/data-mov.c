@@ -42,10 +42,10 @@ make_EHelper(leave) {
 
 make_EHelper(cltd) {
   if (decoding.is_operand_size_16) {
-    TODO();
+    cpu.gpr[2]._16=rtl_get_sign(&cpu.eax,2)?0xffff:0;
   }
   else {
-    TODO();
+    cpu.edx=rtl_get_sign(&cpu.eax,4)?0xffffffff:0;
   }
 
   print_asm(decoding.is_operand_size_16 ? "cwtl" : "cltd");
