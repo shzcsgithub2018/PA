@@ -41,3 +41,4 @@ make_EHelper(leave);
 make_EHelper(cmp);
 
 make_EHelper(sar);
+make_EHelper(shl);
