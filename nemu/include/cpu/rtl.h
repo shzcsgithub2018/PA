@@ -220,4 +220,11 @@ static inline void rtl_update_ZFSF(const rtlreg_t* result, int width) {
   rtl_update_SF(result, width);
 }
 
+
+
+static inline void rtl_update_OF(const rtlreg_t* result, int width) {
+  // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
+  if((*result & (~0u >> ((4 - width) << 3)))==0)
+    cpu.eflages.ZF=0;
+} 
 #endif
