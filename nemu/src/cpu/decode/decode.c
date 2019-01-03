@@ -196,7 +196,7 @@ make_DHelper(pop_r32){
 }
 
 make_DHelper(E) {
-  decode_op_rm(eip, id_dest, true, NULL, false);
+  decode_op_rm(eip, id_dest, true, id_src, true);
 }
 
 make_DHelper(setcc_E) {
