@@ -182,7 +182,8 @@ make_DHelper(I) {
 
 make_DHelper(rel){
   decode_op_SI(eip,id_dest,true);
-  decoding.jmp_eip = id_dest->simm + *eip;
+  Log("rel   dest->val=0x%x",id_dest->val);
+  decoding.jmp_eip = id_dest->val + *eip;
 }
 
 make_DHelper(r) {
