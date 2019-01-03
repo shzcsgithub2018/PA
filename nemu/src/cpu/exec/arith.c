@@ -38,16 +38,16 @@ make_EHelper(sub) {
 
 make_EHelper(cmp) {
   // TODO();
-  Log("$eip=0x%x",cpu.eip);
-  Log("dest->val=0x%x  src->val=0x%x",id_dest->val,id_src->val);
-  rtl_get_ZF(&t0);
-  rtl_get_SF(&t1);
-  rtl_get_OF(&t2);
-  Log("ZF=%x SF=%x  OF=%x",t0,t1,t2);
+  // Log("$eip=0x%x",cpu.eip);
+  // Log("dest->val=0x%x  src->val=0x%x",id_dest->val,id_src->val);
+  // rtl_get_ZF(&t0);
+  // rtl_get_SF(&t1);
+  // rtl_get_OF(&t2);
+  // Log("ZF=%x SF=%x  OF=%x",t0,t1,t2);
   
   rtl_sext(&t0,&id_src->val,id_dest->width);
   rtl_sub(&t1,&id_dest->val,&t0);
-  Log("t1=0x%x",t1);
+  // Log("t1=0x%x",t1);
 
   t3=rtl_get_sign(&t0,id_dest->width);
   at=rtl_get_sign(&id_dest->val,id_dest->width);
@@ -61,16 +61,18 @@ make_EHelper(cmp) {
     rtl_li(&t2,0);
   rtl_set_OF(&t2);
 
-  rtl_get_ZF(&t0);
-  rtl_get_SF(&t1);
-  rtl_get_OF(&t2);
-  Log("ZF=%x SF=%x  OF=%x\n",t0,t1,t2);
+  // rtl_get_ZF(&t0);
+  // rtl_get_SF(&t1);
+  // rtl_get_OF(&t2);
+  // Log("ZF=%x SF=%x  OF=%x\n",t0,t1,t2);
   print_asm_template2(cmp);
 }
 
 make_EHelper(inc) {
-  TODO();
-
+  // TODO();
+  rtl_addi(&id_dest->val,&id_dest->val,1);
+  operand_write(id_dest,&id_dest->val);
+  rtl_update_ZF(&id_dest->val,id_dest->width);
   print_asm_template1(inc);
 }
 
