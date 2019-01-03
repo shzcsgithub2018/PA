@@ -28,11 +28,7 @@ make_EHelper(and) {
 
   operand_write(id_dest, &id_dest->val);
 
-  if(id_dest->val==0)
-    rtl_li(&t1, 1);
-  else
-    rtl_li(&t1, 0);
-  rtl_set_ZF(&t1);
+  rtl_update_ZF(&id_dest->val,id_dest->width);
   // Log("esp=0x%x\n",cpu.esp);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
 
