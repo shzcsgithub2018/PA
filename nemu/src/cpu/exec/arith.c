@@ -45,8 +45,9 @@ make_EHelper(cmp) {
   rtl_get_OF(&t2);
   Log("ZF=%x SF=%x  OF=%x",t0,t1,t2);
   rtl_sext(&t0,&id_src->val,id_dest->width);
+  Log("t0=0x%x",t0);
   rtl_sub(&t1,&id_dest->val,&t0);
-
+  Log("t1=0x%x",t1);
   rtl_update_ZF(&t1,id_dest->width);
   rtl_update_SF(&t1,id_dest->width);
   if((id_dest->val>t0&&t1<=0) || (id_dest->val<t0&&t1>=0))
