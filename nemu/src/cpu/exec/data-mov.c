@@ -68,6 +68,7 @@ make_EHelper(movsx) {
   rtl_sext(&t0, &id_src->val, id_src->width);
   Log("t0=0x%x",t0);
   Log("read 0x%x",vaddr_read(0x1001e1,4));
+  t0=0x5800;
   operand_write(id_dest, &t0);
   print_asm_template2(movsx);
 }
