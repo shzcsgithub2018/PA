@@ -57,7 +57,7 @@ make_EHelper(cmp) {
   rtl_get_ZF(&t0);
   rtl_get_SF(&t1);
   rtl_get_OF(&t2);
-  Log("ZF=%x SF=%x  OF=%x",t0,t1,t2);
+  Log("ZF=%x SF=%x  OF=%x\n",t0,t1,t2);
   print_asm_template2(cmp);
 }
 
