@@ -20,7 +20,7 @@ make_EHelper(add) {
 make_EHelper(sub) {
   // Log("sub   esp=0x%x\n",cpu.esp);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
-  
+  rtl_sext(&t0,&id_src->val,id_src->width);
   rtl_sub(&id_dest->val,&id_dest->val,&id_src->val);
   operand_write(id_dest,&id_dest->val);
 
