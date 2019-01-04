@@ -64,18 +64,19 @@ make_EHelper(cwtl) {
 
 make_EHelper(movsx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
-  Log("movsx  id_src->val=0x%x",id_src->val);
+  // Log("movsx  id_src->val=0x%x",id_src->val);
   rtl_sext(&t0, &id_src->val, id_src->width);
-  Log("t0=0x%x",t0);
-  Log("read 0x%x",vaddr_read(0x1001e1,4));
+  // Log("t0=0x%x",t0);
+  // Log("read 0x%x",vaddr_read(0x1001e1,4));
   operand_write(id_dest, &t0);
   print_asm_template2(movsx);
 }
 
 make_EHelper(movzx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
-  Log("movzx  id_src->val=0x%x",id_src->val);
-  operand_write(id_dest, &id_src->val);
+  // Log("movzx  id_src->val=0x%x",id_src->val);
+  rtl_zext(&id_dest->val,&id_src->val,id_src->width);
+  operand_write(id_dest, &id_dest->val);
   print_asm_template2(movzx);
 }
 
