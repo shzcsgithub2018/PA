@@ -18,7 +18,7 @@ make_EHelper(add) {
   t2=rtl_get_sign(&t1,id_dest->width);
   rtl_update_ZF(&t1,id_dest->width);
   rtl_update_SF(&t1,id_dest->width);
-  if(at&&t3&&!t2)
+  if(at&t3)
     rtl_li(&t2,1);
   else
     rtl_li(&t2,0);
