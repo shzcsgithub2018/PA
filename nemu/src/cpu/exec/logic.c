@@ -10,8 +10,7 @@ make_EHelper(test) {
   rtl_set_CF(&t1);
   rtl_set_OF(&t1);
   // Log("ZF=%d",cpu.eflages.ZF);
-  rtl_update_ZF(&t0,id_dest->width);
-  rtl_update_SF(&t0,id_dest->width);
+  rtl_update_ZFSF(&t0,id_dest->width);
   //  Log("ZF=%d",cpu.eflages.ZF);
   print_asm_template2(test);
 }
