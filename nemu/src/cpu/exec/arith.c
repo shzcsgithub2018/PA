@@ -31,6 +31,8 @@ make_EHelper(sub) {
   else
     rtl_li(&t2,0);
   rtl_set_OF(&t2);
+  t2=rtl_get_sign(&t1,id_dest->val);
+  rtl_get_CF(&t2);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
   // Log("sub   esp=0x%x\n",cpu.esp);
   print_asm_template2(sub);
