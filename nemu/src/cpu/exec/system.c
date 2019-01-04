@@ -44,20 +44,21 @@ make_EHelper(iret) {
 
 make_EHelper(in) {
   // TODO();
+  Log("i'm here");
   switch(id_dest->width){
     case 1:{
               Log("i'm here");
-              rtl_li(&id_dest->val,pio_read_l(id_src->val));
+              rtl_li(&id_dest->val,pio_read_l(vaddr_read(id_src->val,2)));
               operand_write(id_dest,&id_dest->val);
               break;
            }
     case 2:{  
-              rtl_li(&id_dest->val,pio_read_b(id_src->val));
+              rtl_li(&id_dest->val,pio_read_b(vaddr_read(id_src->val,2)));
               operand_write(id_dest,&id_dest->val);
               break;
            }
     case 4:{
-              rtl_li(&id_dest->val,pio_read_w(id_src->val));
+              rtl_li(&id_dest->val,pio_read_w(vaddr_read(id_src->val,2)));
               operand_write(id_dest,&id_dest->val);
               break;
            }
