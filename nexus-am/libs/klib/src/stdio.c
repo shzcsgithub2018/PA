@@ -30,10 +30,13 @@ int sprintf(char *out, const char *fmt, ...) {
       case 'd':{
         if(sign==1){
           int tmp=va_arg(ap,int);
+          char buf[128];
+          int buf_len=0;
           while(tmp){
-            *out++=tmp%10+'0';
+            buf[buf_len++]=tmp%10+'0';
             tmp/=10;
           }
+          while(--buf_len>=0)*out++=buf[buf_len];
           count++;
           sign=0;
         }
@@ -46,7 +49,6 @@ int sprintf(char *out, const char *fmt, ...) {
           char *str=va_arg(ap,char*);
           int len=strlen(str);
           while(len--)*out++=*str++;
-          *out++=0;
           count++;
           sign=0;
         }
@@ -58,6 +60,7 @@ int sprintf(char *out, const char *fmt, ...) {
           *out++=fmt[i];
     }
   }
+  *out++=0;
   va_end(ap);
   return count;
 }
