@@ -18,10 +18,9 @@ char *strcpy(char* dst,const char* src) {
     return NULL;
 
   char *dst_itor=dst;
-
-  do{
-    *dst_itor++=*src;
-  }while(*src!=0);
+  while(*src!=0)
+    *dst_itor++=*src++;
+  *dst_itor=0;
 
   return dst;
 }
@@ -36,9 +35,8 @@ char* strcat(char* dst, const char* src) {
   
   char *dst_itor=dst;
   while(*dst_itor!=0)dst_itor++;
-  while(*src!=0){
+  while(*src!=0)
     *dst_itor++=*src++;
-  }
   *dst_itor=0;
 
   return dst;
