@@ -3,7 +3,7 @@
 make_EHelper(add) {
   // Log("ebx=0x%x",cpu.ebx);
   // Log("fasfdfaff");
-  // Log("id_dest->val=0x%x id_src->val=0x%x",id_dest->val,id_src->val);
+  Log("id_dest->val=0x%x id_src->val=0x%x",id_dest->val,id_src->val);
   rtl_add(&t1,&id_dest->val,&id_src->val);
   operand_write(id_dest,&t1);
   rtl_update_ZFSF(&t1,id_dest->width);
@@ -16,6 +16,8 @@ make_EHelper(add) {
   t3=rtl_get_sign(&id_src->val,4);
   at=rtl_get_sign(&id_dest->val,4);
   t2=rtl_get_sign(&t1,id_dest->width);
+  Log("result=0x%x   id_dest->val=0x%x id_src->val=0x%x",t1,id_dest->val,id_src->val);
+  Log("sign:  src=0x%x  dest=0x%x   t1=0x%x",t3,at,t2);
   if(at&t3)
     rtl_li(&t2,1);
   else
