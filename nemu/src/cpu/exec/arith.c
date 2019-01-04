@@ -43,7 +43,7 @@ make_EHelper(sub) {
   else
     rtl_li(&t2,0);
   rtl_set_CF(&t2);
-  Log("CF=%d",cpu.eflages.CF);
+  // Log("CF=%d",cpu.eflages.CF);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
   // Log("sub   esp=0x%x\n",cpu.esp);
   print_asm_template2(sub);
