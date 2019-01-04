@@ -6,24 +6,22 @@ make_EHelper(add) {
   // Log("id_dest->val=0x%x id_src->val=0x%x",id_dest->val,id_src->val);
   rtl_add(&t1,&id_dest->val,&id_src->val);
   operand_write(id_dest,&t1);
-  rtl_update_ZF(&id_dest->val,id_dest->width);
+  rtl_update_ZFSF(&t1,id_dest->width);
   // if(t1<id_src->val)
   //   rtl_li(&t0,1);
   // else
   //   rtl_li(&t0,0);
   // rtl_set_CF(&t0);
 
-  t3=rtl_get_sign(&id_src->val,id_src->width);
-  at=rtl_get_sign(&id_dest->val,id_dest->width);
+  t3=rtl_get_sign(&id_src->val,4);
+  at=rtl_get_sign(&id_dest->val,4);
   t2=rtl_get_sign(&t1,id_dest->width);
-  rtl_update_ZF(&t1,id_dest->width);
-  rtl_update_SF(&t1,id_dest->width);
   if(at&t3)
     rtl_li(&t2,1);
   else
     rtl_li(&t2,0);
   rtl_set_CF(&t2);
-  // Log("ZF=%d",cpu.eflages.ZF);
+  Log("CF=%d",cpu.eflages.CF);
   // Log("ebx=0x%x",cpu.ebx);
   print_asm_template2(add);
 }
