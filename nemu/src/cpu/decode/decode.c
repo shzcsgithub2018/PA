@@ -310,6 +310,12 @@ make_DHelper(push_SI) {
   decode_op_SI(eip, id_dest, true);
 }
 
+make_DHelper(test_I2a){
+  id_src->width = 1;
+  decode_op_I(eip, id_src, true);
+  decode_op_a(eip, id_dest, true);
+}
+
 make_DHelper(in_I2a) {
   id_src->width = 1;
   decode_op_I(eip, id_src, true);

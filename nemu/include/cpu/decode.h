@@ -120,4 +120,6 @@ make_DHelper(pop_r32);
 make_DHelper(cmp_I2a);
 
 make_DHelper(sub_I2a);
+
+make_DHelper(test_I2a);
 #endif
