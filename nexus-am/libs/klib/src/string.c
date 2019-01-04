@@ -28,8 +28,8 @@ char* strcat(char* dst, const char* src) {
 int strcmp(const char* s1, const char* s2) {
   if(s1==NULL&&s2==NULL)
     return 0;
-  if(s1==NULL)return 1;
-  if(s2==NULL)return -1;
+  if(s1==NULL)return -1;
+  if(s2==NULL)return 1;
 
   while(*s1!='\0' && *s1==*s2){
     s1++;
@@ -51,7 +51,14 @@ void* memcpy(void* out, const void* in, size_t n) {
 }
 
 int memcmp(const void* s1, const void* s2, size_t n){
-  return 0;
+  if(!n)
+    return 0;
+
+  while(--n && *(char *)s1 == *(char *)s2){
+    s1 = (char *)s1 + 1;
+    s2 = (char *)s2 + 1;
+  }
+  return (*((unsigned char *)s1) - *((unsigned char *)s2));
 }
 
 #endif
