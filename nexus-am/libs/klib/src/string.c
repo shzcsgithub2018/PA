@@ -42,8 +42,12 @@ int strncmp(const char* s1, const char* s2, size_t n) {
   return 0;
 }
 
-void* memset(void* v,int c,size_t n) {
-  return NULL;
+void* memset(void* s,int c,size_t n) {
+  const unsigned char uc = c;
+  unsigned char *su;
+  for(su = s;0 < n;++su,--n)
+    *su = uc;
+  return s;
 }
 
 void* memcpy(void* out, const void* in, size_t n) {
