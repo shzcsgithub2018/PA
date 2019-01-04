@@ -36,12 +36,14 @@ make_EHelper(sub) {
   t3=rtl_get_sign(&t0,id_dest->width);
   at=rtl_get_sign(&id_dest->val,id_dest->width);
   t2=rtl_get_sign(&t1,id_dest->width);
-
-  if((at&&!t3)||t2)
+  // Log("result=0x%x   id_dest->val=0x%x id_src->val=0x%x",t1,id_dest->val,id_src->val);
+  // Log("sign:  src=0x%x  dest=0x%x   t1=0x%x",t3,at,t2);
+  if((!at&&t3)||t2)
     rtl_li(&t2,1);
   else
     rtl_li(&t2,0);
   rtl_set_CF(&t2);
+  Log("CF=%d",cpu.eflages.CF);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
   // Log("sub   esp=0x%x\n",cpu.esp);
   print_asm_template2(sub);
