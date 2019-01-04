@@ -38,7 +38,7 @@ make_EHelper(sub) {
   t2=rtl_get_sign(&t1,id_dest->width);
   // Log("result=0x%x   id_dest->val=0x%x id_src->val=0x%x",t1,id_dest->val,id_src->val);
   // Log("sign:  src=0x%x  dest=0x%x   t1=0x%x",t3,at,t2);
-  if((!at&&t3)||t2)
+  if((!at&&t3)||(!at&&!t3&&t2)||(at&&t3&&t2))
     rtl_li(&t2,1);
   else
     rtl_li(&t2,0);
