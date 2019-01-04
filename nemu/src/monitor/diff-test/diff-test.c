@@ -76,6 +76,7 @@ void difftest_step(uint32_t eip) {
     if(cpu.gpr[i]._32!=ref_r.gpr[i]._32){
         nemu_state=NEMU_ABORT;
     }
+    printf("hhhhhhh\n");
   }
   if(cpu.eip!=ref_r.eip)
     nemu_state=NEMU_ABORT;
