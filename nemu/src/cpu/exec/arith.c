@@ -7,7 +7,7 @@ make_EHelper(add) {
   rtl_add(&t1,&id_dest->val,&id_src->val);
   operand_write(id_dest,&t1);
   rtl_update_ZF(&id_dest->val,id_dest->width);
-  if(id_dest->val<id_src->val)
+  if(t1<id_src->val)
     rtl_li(&t0,1);
   else
     rtl_li(&t0,0);
