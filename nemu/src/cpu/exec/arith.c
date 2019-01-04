@@ -24,15 +24,16 @@ make_EHelper(sub) {
   rtl_sub(&t1,&id_dest->val,&t0);
   operand_write(id_dest,&t1);
 
+  t3=rtl_get_sign(&t0,id_dest->width);
+  at=rtl_get_sign(&id_dest->val,id_dest->width);
+  t2=rtl_get_sign(&t1,id_dest->width);
   rtl_update_ZF(&t1,id_dest->width);
   rtl_update_SF(&t1,id_dest->width);
-  if((id_dest->val>t0&&t1<=0) || (id_dest->val<t0&&t1>=0))
+  if((!at&&t3&&t2)|| (at&&!t3&&!t2))
     rtl_li(&t2,1);
   else
     rtl_li(&t2,0);
-  rtl_set_OF(&t2);
-  t2=rtl_get_sign(&t1,id_dest->val);
-  rtl_get_CF(&t2);
+  rtl_set_CF(&t2);
   // Log("dest= 0x%x src=0x%x\n",id_dest->val,id_src->val);
   // Log("sub   esp=0x%x\n",cpu.esp);
   print_asm_template2(sub);
