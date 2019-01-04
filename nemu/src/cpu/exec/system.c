@@ -44,10 +44,8 @@ make_EHelper(iret) {
 
 make_EHelper(in) {
   // TODO();
-  Log("i'm here");
   switch(id_dest->width){
     case 1:{
-              Log("i'm here");
               rtl_li(&id_dest->val,pio_read_l(vaddr_read(id_src->val,2)));
               operand_write(id_dest,&id_dest->val);
               break;
