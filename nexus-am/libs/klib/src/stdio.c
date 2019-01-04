@@ -4,6 +4,11 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 int printf(const char *fmt, ...) {
+  // va_list ap;
+  // va_start(ap,fmt);
+  // //va_arg(ap,int);
+  // vprintf(fmt,ap);
+  // va_end(ap);
   return 0;
 }
 
