@@ -13,7 +13,7 @@ make_EHelper(add) {
   //   rtl_li(&t0,0);
   // rtl_set_CF(&t0);
 
-  t3=rtl_get_sign(&id_src->val,id_dest->width);
+  t3=rtl_get_sign(&id_src->val,id_src->width);
   at=rtl_get_sign(&id_dest->val,id_dest->width);
   t2=rtl_get_sign(&t1,id_dest->width);
   rtl_update_ZF(&t1,id_dest->width);
@@ -23,8 +23,8 @@ make_EHelper(add) {
   else
     rtl_li(&t2,0);
   rtl_set_CF(&t2);
-  Log("ZF=%d",cpu.eflages.ZF);
-  Log("ebx=0x%x",cpu.ebx);
+  // Log("ZF=%d",cpu.eflages.ZF);
+  // Log("ebx=0x%x",cpu.ebx);
   print_asm_template2(add);
 }
 
