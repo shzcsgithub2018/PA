@@ -3,7 +3,7 @@
 make_EHelper(add) {
   // Log("ebx=0x%x",cpu.ebx);
   // Log("fasfdfaff");
-  Log("id_dest->val=0x%x id_src->val=0x%x",id_dest->val,id_src->val);
+  // Log("id_dest->val=0x%x id_src->val=0x%x",id_dest->val,id_src->val);
   rtl_add(&t1,&id_dest->val,&id_src->val);
   operand_write(id_dest,&t1);
 
