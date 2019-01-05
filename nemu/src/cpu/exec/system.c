@@ -73,7 +73,7 @@ make_EHelper(in) {
 
 make_EHelper(out) {
   // TODO();
-  Log("out 0x%x",id_src->val);
+  Log("out %c",id_src->val);
   switch(id_src->width){
     case 1:{
               pio_write_l(id_dest->val,id_src->val);
