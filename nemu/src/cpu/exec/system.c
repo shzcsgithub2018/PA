@@ -47,7 +47,7 @@ make_EHelper(in) {
   switch(id_dest->width){
     case 1:{
               // Log("i'm here");
-              rtl_li(&id_dest->val,pio_read_l(id_src->val));
+              rtl_li(&id_dest->val,pio_read_b(id_src->val));
               Log("in 0x%x",id_dest->val);
               operand_write(id_dest,&id_dest->val);
               break;
