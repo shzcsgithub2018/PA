@@ -47,7 +47,7 @@ make_EHelper(in) {
   switch(id_dest->width){
     case 1:{
               // Log("i'm here");
-              rtl_li(&id_dest->val,pio_read_l(id_src->val));
+              rtl_li(&id_dest->val,pio_read_w(id_src->val));
               operand_write(id_dest,&id_dest->val);
               break;
            }
@@ -74,7 +74,7 @@ make_EHelper(out) {
   // TODO();
   switch(id_src->width){
     case 1:{
-              pio_write_l(id_dest->val,id_src->val);
+              pio_write_w(id_dest->val,id_src->val);
               break;
            }
     case 2:{  
