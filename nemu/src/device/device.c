@@ -1,5 +1,4 @@
 #include "common.h"
-#define HAS_IOE
 #ifdef HAS_IOE
 
 #include <sys/time.h>
