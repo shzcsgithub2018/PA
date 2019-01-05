@@ -48,7 +48,7 @@ make_EHelper(in) {
     case 1:{
               // Log("i'm here");
               rtl_li(&id_dest->val,pio_read_b(id_src->val));
-              Log("in 0x%x",id_dest->val);
+              // Log("in 0x%x",id_dest->val);
               operand_write(id_dest,&id_dest->val);
               break;
            }
@@ -76,7 +76,7 @@ make_EHelper(out) {
   // Log("out %c",id_src->val);
   switch(id_src->width){
     case 1:{  
-              Log("out %c",id_src->val);
+              // Log("out %c",id_src->val);
               pio_write_b(id_dest->val,id_src->val);
               break;
            }
