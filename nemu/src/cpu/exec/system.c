@@ -77,7 +77,7 @@ make_EHelper(out) {
   switch(id_src->width){
     case 1:{  
               // Log("out %c",id_src->val);
-              pio_write_b(id_dest->val,id_src->val);
+              pio_write_l(id_dest->val,id_src->val);
               break;
            }
     case 2:{  
