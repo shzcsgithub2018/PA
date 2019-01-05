@@ -42,7 +42,7 @@ static make_EHelper(name) { \
 /* 0x80, 0x81, 0x83 */
 make_group(gp1,
     EX(add), EX(or), EX(adc), EX(sbb),
-    EX(and), EX(sub), EMPTY, EX(cmp))
+    EX(and), EX(sub),EX(xor), EX(cmp))
 
   /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
 make_group(gp2,
@@ -52,16 +52,16 @@ make_group(gp2,
   /* 0xf6, 0xf7 */
 make_group(gp3,
     IDEX(I,test), EMPTY, EX(not), EX(neg),
-    EX(mul), EX(imul1), EMPTY, EX(idiv))
+    EX(mul), EX(imul1), EX(div), EX(idiv))
 
   /* 0xfe */
 make_group(gp4,
-    EMPTY, EX(dec), EMPTY, EMPTY,
+    EX(inc), EX(dec), EMPTY, EMPTY,
     EMPTY, EMPTY, EMPTY, EMPTY)
 
   /* 0xff */
 make_group(gp5,
-    EX(inc), EMPTY, EX(call_rm), EMPTY,
+    EX(inc), EX(dec), EX(call_rm), EMPTY,
     EX(jmp_rm), EMPTY, EX(push), EMPTY)
 
   /* 0x0f 0x01*/
@@ -175,10 +175,10 @@ opcode_entry opcode_table [512] = {
   /* 0x84 */	IDEX(rel,jcc), IDEX(rel,jcc), IDEX(rel,jcc), IDEX(rel,jcc),
   /* 0x88 */	IDEX(rel,jcc), IDEX(rel,jcc), IDEX(rel,jcc), IDEX(rel,jcc),
   /* 0x8c */	IDEX(rel,jcc), IDEX(rel,jcc), IDEX(rel,jcc), IDEX(rel,jcc),
-  /* 0x90 */	IDEX(setcc_E,setcc), EMPTY, IDEX(setcc_E,setcc), EMPTY,
-  /* 0x94 */	IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), EMPTY,
-  /* 0x98 */	IDEX(setcc_E,setcc), EMPTY, EMPTY, EMPTY,
-  /* 0x9c */	IDEX(setcc_E,setcc), EMPTY, IDEX(setcc_E,setcc), EMPTY,
+  /* 0x90 */	IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), IDEX(setcc_E,setcc),
+  /* 0x94 */	IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), IDEX(setcc_E,setcc),
+  /* 0x98 */	IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), IDEX(setcc_E,setcc),
+  /* 0x9c */	IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), IDEX(setcc_E,setcc), IDEX(setcc_E,setcc),
   /* 0xa0 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xa4 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xa8 */	EMPTY, EMPTY, EMPTY, EMPTY,
