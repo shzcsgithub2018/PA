@@ -182,16 +182,6 @@ make_DHelper(I) {
   decode_op_I(eip, id_dest, true);
 }
 
-make_DHelper(cmp_I2a){
-  decode_op_I(eip, id_src, true);
-  decode_op_a(eip,id_dest,true);
-}
-
-make_DHelper(sub_I2a){
-  decode_op_I(eip, id_src, true);
-  decode_op_a(eip,id_dest,true);
-}
-
 make_DHelper(rel){
   decode_op_SI(eip,id_dest,true);
   // Log("rel   dest->val=0x%x   op->width=0x%x",id_dest->val,id_dest->width);
@@ -220,10 +210,6 @@ make_DHelper(gp7_E) {
 }
 
 /* used by test in group3 */
-make_DHelper(test_I) {
-  decode_op_I(eip, id_src, true);
-}
-
 make_DHelper(SI2E) {
   assert(id_dest->width == 2 || id_dest->width == 4);
   decode_op_rm(eip, id_dest, true, NULL, false);
@@ -308,12 +294,6 @@ make_DHelper(J) {
 
 make_DHelper(push_SI) {
   decode_op_SI(eip, id_dest, true);
-}
-
-make_DHelper(test_I2a){
-  id_src->width = 1;
-  decode_op_I(eip, id_src, true);
-  decode_op_a(eip, id_dest, true);
 }
 
 make_DHelper(in_I2a) {
