@@ -5,7 +5,7 @@ make_EHelper(test) {
   // Log("eax=0x%x",cpu.eax);
   // Log("now $eip=0x%x",*eip);
   rtl_and(&t0,&id_dest->val,&id_src->val);
-  // Log("dest=0x%x   src=0x%x",id_dest->val,id_src->val);
+  Log("dest=0x%x   src=0x%x",id_dest->val,id_src->val);
   rtl_li(&t1, 0);
   rtl_set_CF(&t1);
   rtl_set_OF(&t1);
