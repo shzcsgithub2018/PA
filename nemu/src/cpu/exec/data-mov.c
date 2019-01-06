@@ -1,7 +1,7 @@
 #include "cpu/exec.h"
 
 make_EHelper(mov) {
-  if(*eip==0x1017f9)
+  if(*eip==0x1017fc)
     Log("0x%x",id_src->val);
   operand_write(id_dest, &id_src->val);
   print_asm_template2(mov);
