@@ -3,7 +3,7 @@
 #include <amdev.h>
 
 #define I8042_DATA_PORT 0x60
-static int keydown=0;
+// static int keydown=0;
 // static int keycode=0;
 size_t input_read(uintptr_t reg, void *buf, size_t size) {
   switch (reg) {
@@ -15,7 +15,7 @@ size_t input_read(uintptr_t reg, void *buf, size_t size) {
         kbd->keycode = _KEY_NONE;
       }
       else{
-        kbd->keydown = !keydown;
+        kbd->keydown = 1;
         kbd->keycode = kc;
       }
       // if(keycode!=_KEY_NONE){
