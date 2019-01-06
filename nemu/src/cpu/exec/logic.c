@@ -97,8 +97,9 @@ make_EHelper(shr) {
 make_EHelper(setcc) {
   uint32_t cc = decoding.opcode & 0xf;
 
-  Log("id_dest->val=0x%x",id_dest->val);
+  // Log("id_dest->val=0x%x",id_dest->val);
   rtl_setcc(&t2, cc);
+  t2=(id_dest->val&0xfffffff0)+t2;
   operand_write(id_dest, &t2);
 
   print_asm("set%s %s", get_cc_name(cc), id_dest->str);
