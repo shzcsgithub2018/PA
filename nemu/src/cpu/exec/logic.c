@@ -97,6 +97,7 @@ make_EHelper(shr) {
 make_EHelper(setcc) {
   uint32_t cc = decoding.opcode & 0xf;
 
+  Log("id_dest->val=0x%x",id_dest->val);
   rtl_setcc(&t2, cc);
   operand_write(id_dest, &t2);
 
