@@ -77,7 +77,7 @@ make_EHelper(movsx) {
 make_EHelper(movzx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
   // Log("movzx  id_dest->val=0x%x",id_dest->val);
-  rtl_zext(&id_dest->val,&id_src->val,id_src->width);
+  rtl_zext(&id_dest->val,&id_src->val,id_dest->width);
   // Log("movzx  id_src->val=0x%x",id_src->val);
   // Log("movzx  id_dest->val=0x%x",id_dest->val);
   // Log("eip=0x%x",*eip);
