@@ -206,6 +206,7 @@ make_DHelper(E) {
 }
 
 make_DHelper(setcc_E) {
+  id_dest->width=1;
   decode_op_rm(eip, id_dest, false, NULL, false);
 }
 
