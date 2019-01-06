@@ -59,7 +59,7 @@ make_EHelper(in) {
            }
     case 4:{
               rtl_li(&id_dest->val,pio_read_l(id_src->val));
-              Log("in 0x%x",id_dest->val);
+              // Log("in 0x%x",id_dest->val);
               operand_write(id_dest,&id_dest->val);
               break;
            }
