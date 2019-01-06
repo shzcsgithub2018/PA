@@ -74,9 +74,12 @@ void difftest_step(uint32_t eip) {
   // TODO();
   for(int i=0;i<8;i++){
     if(cpu.gpr[i]._32!=ref_r.gpr[i]._32){
+        printf("The %d regesiter has problem  REF:0x%x  DUT:0X%x",i,cpu.gpr[i]._32,ref_r.gpr[i]._32);
         nemu_state=NEMU_ABORT;
     }
   }
-  if(cpu.eip!=ref_r.eip)
-    nemu_state=NEMU_ABORT;
+  if(cpu.eip!=ref_r.eip){
+      printf("EIP has problem! REF:0x%x  DUT:0X%x",cpu.eip,ref_r.eip);
+      nemu_state=NEMU_ABORT;
+  }
 }
