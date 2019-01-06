@@ -182,6 +182,10 @@ make_DHelper(I) {
   decode_op_I(eip, id_dest, true);
 }
 
+make_DHelper(test_I){
+  decode_op_I(eip, id_src, true);
+}
+
 make_DHelper(rel){
   decode_op_SI(eip,id_dest,true);
   // Log("rel   dest->val=0x%x   op->width=0x%x",id_dest->val,id_dest->width);
