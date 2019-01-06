@@ -99,7 +99,8 @@ make_EHelper(setcc) {
 
   rtl_setcc(&t2, cc);
   operand_write(id_dest, &t2);
-
+  if(*eip==0x100bc8)
+    Log("movzx  id_dest->val=0x%x",id_dest->val);
   print_asm("set%s %s", get_cc_name(cc), id_dest->str);
 }
 
