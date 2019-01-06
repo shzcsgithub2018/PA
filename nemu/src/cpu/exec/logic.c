@@ -109,3 +109,47 @@ make_EHelper(not) {
 
   print_asm_template1(not);
 }
+
+make_EHelper(rol){
+    int tmp=id_src->val;
+    t3=id_dest->val;
+    while(tmp-->0){
+      t0=rtl_get_sign(&t3,id_dest->width);
+      rtl_shli(&t1,&t3,1);
+      t3=t1+t0;
+    }
+    // rtl_set_CF(&t0);
+    operand_write(id_dest,&t3);
+    // if(id_src->val==1){
+    //   rtl_get_CF(&t0);
+    //   if(rtl_get_sign(&t3,id_dest->width)!=t0)
+    //     t0=1;
+    //   else
+    //     t0=0;
+    //   rtl_set_OF(&t0);
+    // }
+
+    print_asm_template1(rol);
+}
+
+make_EHelper(ror){
+  int tmp=id_src->val;
+    t3=id_dest->val;
+    while(tmp-->0){
+      t0=t3&0x1;
+      rtl_sari(&t1,&t3,1);
+      t3=t1|(t0<<31);
+    }
+    // rtl_set_CF(&t0);
+    operand_write(id_dest,&t3);
+    // if(id_src->val==1){
+    //   rtl_get_CF(&t0);
+    //   if(rtl_get_sign(&t3,id_dest->width)!=t0)
+    //     t0=1;
+    //   else
+    //     t0=0;
+    //   rtl_set_OF(&t0);
+    // }
+
+    print_asm_template1(ror);
+}
