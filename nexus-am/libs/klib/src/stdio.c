@@ -4,16 +4,18 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 int printf(const char *fmt, ...) {
-  return 0;
+  va_list ap;
+  char out[128];
+  va_start(ap,fmt);
+  int n=vsprintf(out,fmt,ap);
+  int len=strlen(out);
+  for(int i=0;i<len;i++)
+    _putc(out[i]);
+  va_end(ap);
+  return n;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
-  return 0;
-}
-
-int sprintf(char *out, const char *fmt, ...) {
-  va_list ap;
-  va_start(ap,fmt);
   int fmt_len=strlen(fmt);
   int sign=0,count=0;
   for(int i=0;i<fmt_len;i++){
@@ -61,8 +63,15 @@ int sprintf(char *out, const char *fmt, ...) {
     }
   }
   *out++=0;
-  va_end(ap);
   return count;
+}
+
+int sprintf(char *out, const char *fmt, ...) {
+  va_list ap;
+  va_start(ap,fmt);
+  int n=vsprintf(out,fmt,ap);
+  va_end(ap);
+  return n;
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
