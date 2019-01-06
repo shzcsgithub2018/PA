@@ -15,7 +15,7 @@ size_t input_read(uintptr_t reg, void *buf, size_t size) {
         kbd->keycode = _KEY_NONE;
       }
       else{
-        kbd->keydown = 1;
+        kbd->keydown = 0;
         kbd->keycode = kc;
       }
       // if(keycode!=_KEY_NONE){
