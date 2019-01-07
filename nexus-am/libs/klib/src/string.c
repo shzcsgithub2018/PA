@@ -69,15 +69,14 @@ void* memset(void* s,int c,size_t n) {
 }
 
 void* memcpy(void* out, const void* in, size_t n) {
-  // if(!n)
-  //   return 0;
-
-  // while(--n ){
-  //   && *(char *)s1 == *(char *)s2
-  //   s1 = (char *)s1 + 1;
-  //   s2 = (char *)s2 + 1;
-  // }
-  return NULL;
+  if(!n)
+    return 0;
+  char *s1=out;
+  while(--n ){
+     *s1++=*(char *)in;
+      in=(char *)in+1;
+  }
+  return s1;
 }
 
 int memcmp(const void* s1, const void* s2, size_t n){
