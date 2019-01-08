@@ -32,7 +32,7 @@ size_t video_write(uintptr_t reg, void *buf, size_t size) {
       
       int x = ctl->x, y = ctl->y, w = ctl->w, h = ctl->h;
       uint32_t *pixels = ctl->pixels;
-      int cp_bytes = sizeof(uint32_t) * w;
+      int cp_bytes = sizeof(uint32_t) * (w>W-w?W-w:w);
       for (int j = 0; j < h && y + j < H; j ++) {
         memcpy(&fb[(y + j) * W + x], pixels, cp_bytes);
         pixels += w;

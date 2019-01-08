@@ -151,6 +151,11 @@ make_DHelper(I_E2G) {
   decode_op_I(eip, id_src, true);
 }
 
+make_DHelper(imul_1I_E2G){
+  decode_op_rm(eip, id_src2, true, id_dest, false);
+  id_src->width=1;
+  decode_op_I(eip, id_src, true);
+}
 /* Eb <- Ib
  * Ev <- Iv
  */

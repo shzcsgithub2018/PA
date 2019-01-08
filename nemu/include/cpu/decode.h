@@ -116,4 +116,6 @@ make_DHelper(out_a2dx);
 make_DHelper(rel);
 
 make_DHelper(pop_r32);
+
+make_DHelper(imul_1I_E2G);
 #endif
