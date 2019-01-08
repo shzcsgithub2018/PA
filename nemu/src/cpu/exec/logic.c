@@ -73,6 +73,8 @@ make_EHelper(or) {
 make_EHelper(sar) {
   // TODO();
   // unnecessary to update CF and OF in NEMU
+  if(*eip==0x1018c0)
+    printf("eax=0x%x",cpu.eax);
   rtl_sari(&id_dest->val,&id_dest->val,id_src->val);
   operand_write(id_dest,&id_dest->val);
   print_asm_template2(sar);
