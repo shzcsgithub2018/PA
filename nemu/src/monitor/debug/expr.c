@@ -24,21 +24,21 @@ static struct rule {
      * Pay attention to the precedence level of different rules.
      */
 
-    {" +", TK_NOTYPE},            			// spaces
-    {"\\+", '+'},                 			// plus
-	{"-", '-'},								// decrease
-	{"\\*", '*'},							// multiply
-	{"/", '/'},								// divide
-	{"\\(",'('},							// Left parenthesis
-	{"\\)",')'},							// Right parenthesis
-	{"\\$(e(([a-d]x)|([bsi]p)|([ds]i)))", TK_RES},//regester
-	{"0[Xx][0-9a-fA-F]{1,8}", TK_NUM_HEX},		// Hexadecimal integer
-	{"([1-9][0-9]{1,31})|[0-9]",TK_NUM},	// Decimal integer
-    {"==", TK_EQ},                			// equal
-	{"!=", TK_NEQ},							// not equal
-	{"&&", TK_AND},							//And operation
-	{"\\*", TK_POINT},						// point 
-	{"-", TK_NEGATIVE},						// negative
+    {" +", TK_NOTYPE},            					// spaces
+    {"\\+", '+'},                 					// plus
+	{"-", '-'},										// decrease
+	{"\\*", '*'},									// multiply
+	{"/", '/'},										// divide
+	{"\\(",'('},									// Left parenthesis
+	{"\\)",')'},									// Right parenthesis
+	{"\\$(e(([a-d]x)|([bsi]p)|([ds]i)))", TK_RES},  //regester
+	{"0[Xx][0-9a-fA-F]{1,8}", TK_NUM_HEX},			// Hexadecimal integer
+	{"([1-9][0-9]{1,31})|[0-9]",TK_NUM},			// Decimal integer
+    {"==", TK_EQ},                					// equal
+	{"!=", TK_NEQ},									// not equal
+	{"&&", TK_AND},									//And operation
+	{"\\*", TK_POINT},								// point 
+	{"-", TK_NEGATIVE},								// negative
 	
 };
 
@@ -154,6 +154,7 @@ bool check_parentheses(Token *p,Token *q,bool *success){
 		return true;
 	else if(count!=0)
 		*success=false;
+		
 	return false;
 }
    
