@@ -73,8 +73,9 @@ make_EHelper(or) {
 make_EHelper(sar) {
   // TODO();
   // unnecessary to update CF and OF in NEMU
-  rtl_sari(&id_dest->val,&id_dest->val,id_src->val);
-  operand_write(id_dest,&id_dest->val);
+  rtl_sext(&t0,&id_dest->val,id_dest->width);
+  rtl_sari(&t0,&t0,id_src->val);
+  operand_write(id_dest,&t0);
   print_asm_template2(sar);
 }
 
