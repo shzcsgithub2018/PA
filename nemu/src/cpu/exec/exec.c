@@ -227,14 +227,11 @@ static inline void update_eip(void) {
 void exec_wrapper(bool print_flag) {
   // static int count=1;
   // if(count==1){
+  //     cpu.esp=0x100000;
   //     count=0;
   // }
-  // else{
-  //   Log("$eip=0x%x $esp=0x%x  *$esp=0x%x ",cpu.eip,cpu.esp,vaddr_read(cpu.esp,4));
-  //   Log("$eax=0x%x $ebx=0x%x  $ecx=0x%x  $edx=0x%x\n",cpu.eax,cpu.ebx,cpu.ecx,cpu.edx);
-  // }
-    
- 
+  // Log("$eip=0x%x $esp=0x%x  *$esp=0x%x ",cpu.eip,cpu.esp,vaddr_read(cpu.esp,4));
+  Log("$eax=0x%x $ebx=0x%x  $ecx=0x%x  $edx=0x%x\n",cpu.eax,cpu.ebx,cpu.ecx,cpu.edx);
   vaddr_t ori_eip = cpu.eip;
 
 #ifdef DEBUG
