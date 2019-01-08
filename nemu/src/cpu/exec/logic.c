@@ -116,7 +116,7 @@ make_EHelper(rol){
     while(tmp-->0){
       t0=rtl_get_sign(&t3,id_dest->width);
       rtl_shli(&t1,&t3,1);
-      t3=t0;
+      t3=t1+t0;
     }
     // rtl_set_CF(&t0);
     operand_write(id_dest,&t3);
