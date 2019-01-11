@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 enum {
-    TK_NOTYPE = 256,TK_NUM,  TK_NUM_HEX,   TK_RES, 
+    TK_NOTYPE = 256,TK_NUM,  TK_NUM_HEX,   TK_REG, 
 	TK_EQ,   TK_NEQ,    TK_AND,   TK_POINT,  TK_NEGATIVE
 
     /* TODO: Add more token types */
@@ -31,7 +31,7 @@ static struct rule {
 	{"/", '/'},										// divide
 	{"\\(",'('},									// Left parenthesis
 	{"\\)",')'},									// Right parenthesis
-	{"\\$(e(([a-d]x)|([bsi]p)|([ds]i)))", TK_RES},  //regester
+	{"\\$(e(([a-d]x)|([bsi]p)|([ds]i)))", TK_REG},  //regester
 	{"0[Xx][0-9a-fA-F]{1,8}", TK_NUM_HEX},			// Hexadecimal integer
 	{"([1-9][0-9]{1,31})|[0-9]",TK_NUM},			// Decimal integer
     {"==", TK_EQ},                					// equal
@@ -109,14 +109,14 @@ static bool make_token(char *e) {
 						tokens[nr_token++].type=rules[i].token_type;
 						break;
 					case TK_NUM:
-					case TK_RES:
+					case TK_REG:
 					case TK_NUM_HEX:
-					{
-						tokens[nr_token].type=rules[i].token_type;
-						strncpy(tokens[nr_token].str,substr_start,substr_len);
-						tokens[nr_token++].str[substr_len]='\0';
-						break;
-					}
+						{
+							tokens[nr_token].type=rules[i].token_type;
+							strncpy(tokens[nr_token].str,substr_start,substr_len);
+							tokens[nr_token++].str[substr_len]='\0';
+							break;
+						}
 					case TK_NOTYPE:
 						break;
                     default: TODO();
@@ -188,7 +188,7 @@ Token* pos_mop(Token *p,Token *q,bool *success){
 			pos_mod=iter_p;
 			sign=2;
 		}
-		else if (sign<=1 && (iter_p->type=='+' || iter_p->type=='-')){
+		else if(sign<=1 && (iter_p->type=='+' || iter_p->type=='-')){
 			pos_mod=iter_p;
 			sign=1;
 		}
@@ -214,17 +214,18 @@ uint32_t eval(Token *p,Token *q,bool *success){
 		switch(p->type){
 			case TK_NUM:return (uint32_t)atoi(p->str);
 			case TK_NUM_HEX:{
-				uint32_t num;
-				sscanf(p->str+2,"%x",&num);
-				return num;
-			}
-			case TK_RES:{
-				for(int i=0;i<8;i++)
-					if(strcmp(p->str+1,regsl[i])==0)
-						return cpu.gpr[i]._32;
-				if(strcmp(p->str+1,"eip")==0)
-					return cpu.eip;
-			}
+								uint32_t num;
+								sscanf(p->str+2,"%x",&num);
+								return num;
+							}
+			case TK_REG:{
+							for(int i=0;i<8;i++)
+								if(strcmp(p->str+1,regsl[i])==0)
+									return cpu.gpr[i]._32;
+
+							if(strcmp(p->str+1,"eip")==0)
+								return cpu.eip;
+						}
 			default:*success=false;return 0;
 		}
 			
@@ -250,24 +251,26 @@ uint32_t eval(Token *p,Token *q,bool *success){
 			case '+': return val1 + val2;
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
-			case '/': {
-				if(val2==0){
-					Log("Division by zero,the result is wrong!\n");
-					return 1;
+			case '/':   
+				{
+					if(val2==0){
+						Log("Division by zero,the result is wrong!\n");
+						return 1;
+					}
+					else
+						return val1 / val2;
 				}
-				else
-					return val1 / val2;
-			}
-			case TK_NEGATIVE:{
-				Token *tmp=p-1;
-				if(tmp->type=='+')
-					tmp->type='-';
-				else if(tmp->type=='-')
-					tmp->type='+';
-				else
-					assert(0);
-				return val2;
-			}
+			case TK_NEGATIVE:
+				{
+					Token *tmp=p-1;
+					if(tmp->type=='+')
+						tmp->type='-';
+					else if(tmp->type=='-')
+						tmp->type='+';
+					else
+						assert(0);
+					return val2;
+				}
 			case TK_POINT:return vaddr_read(val2,4);
 			case TK_EQ: return val1==val2?1:0;
 			case TK_NEQ:return val1!=val2?1:0;
@@ -293,7 +296,7 @@ uint32_t expr(char *e, bool *success) {
 		if(tokens[i].type != '*' || ( i!=0 &&( tokens[i-1].type == ')' 
 										   	|| tokens[i-1].type == TK_NUM
 										   	|| tokens[i-1].type == TK_NUM_HEX 
-										   	|| tokens[i-1].type == TK_RES
+										   	|| tokens[i-1].type == TK_REG
 											) 
 									)
 		)
@@ -302,16 +305,16 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].type = TK_POINT;
 	}
 	for (int i = 0; i < nr_token; i ++) {
-		if(tokens[i].type != '-' || ( i!=0 &&( tokens[i-1].type == ')' 
-										   	|| tokens[i-1].type == TK_NUM
-										   	|| tokens[i-1].type == TK_NUM_HEX 
-										   	|| tokens[i-1].type == TK_RES
-											) 
-									)
-		)
-			continue;
-		else
-			tokens[i].type = TK_NEGATIVE;
+			if(tokens[i].type != '-' || ( i!=0 &&( tokens[i-1].type == ')' 
+												|| tokens[i-1].type == TK_NUM
+												|| tokens[i-1].type == TK_NUM_HEX 
+												|| tokens[i-1].type == TK_REG
+												) 
+										)
+			)
+				continue;
+			else
+				tokens[i].type = TK_NEGATIVE;
+		}
+		return eval(tokens,tokens+nr_token-1,success);
 	}
-	return eval(tokens,tokens+nr_token-1,success);
-}
