@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <assert.h>
 
+
 #ifdef DEBUG
 extern FILE* log_fp;
 #	define Log_write(format, ...) \
